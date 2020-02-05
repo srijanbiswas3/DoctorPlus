@@ -51,6 +51,8 @@ public class ProfileActivity extends AppCompatActivity {
         reff = FirebaseDatabase.getInstance().getReference().child("Member");
 
         reff2 = FirebaseDatabase.getInstance().getReference().child("Member");
+        reff2.keepSynced(true);
+        reff.keepSynced(true);
 
         reff.addValueEventListener(new ValueEventListener() {
             @Override

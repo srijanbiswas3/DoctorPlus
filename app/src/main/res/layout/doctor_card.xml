@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="7dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="3dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <ImageView
+            android:id="@+id/docimg"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_profile" />
+
+        <TextView
+            android:id="@+id/docname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/docimg"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/docimg"
+            android:hint="Dr. ..........."
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/doctype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/docimg"
+            android:layout_marginTop="35dp"
+            android:layout_toRightOf="@+id/docimg"
+            android:hint="Type- ....."
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/docemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/docimg"
+            android:layout_marginTop="55dp"
+            android:layout_toRightOf="@+id/docimg"
+            android:hint="Email- ..........."
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/viewbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="view" />
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
