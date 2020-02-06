@@ -4,37 +4,52 @@
     android:id="@+id/botsheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
+    android:background="@drawable/botsheet_background"
     android:orientation="vertical"
-    app:behavior_peekHeight="50dp"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+    android:padding="15dp"
+    app:behavior_peekHeight="53dp"
 
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+    <View
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="-17dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/arrow" />
     <View
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_horizontal"
         android:background="@color/colorPrimaryDark" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:gravity="center_horizontal"
-        android:id="@+id/drag"
-        android:text="^Drag Up To load Settings^" />
 
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+    android:text="Clear filters"
+    android:background="@drawable/btn_background2"
+    android:textColor="@android:color/white"
+    android:textAllCaps="false"
+    android:id="@+id/clear"
+    android:textStyle="italic"
+    android:layout_margin="20dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:text="Choose location"
+        android:textStyle="italic"
         android:textColor="@color/colorAccent"
         android:textSize="20sp" />
 
     <Spinner
         android:id="@+id/location"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="30dp"
         android:layout_margin="20dp"
         android:spinnerMode="dialog" />
 
@@ -44,22 +59,23 @@
         android:layout_marginLeft="20dp"
         android:text="Choose Problem type"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textStyle="italic"/>
 
     <Spinner
         android:id="@+id/ptype"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="30dp"
         android:layout_margin="20dp"
         android:spinnerMode="dialog" />
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
-        android:background="@color/background"
+        android:background="@drawable/btn_background"
         android:text="Search"
         android:id="@+id/search"
         android:textColor="@android:color/white" />

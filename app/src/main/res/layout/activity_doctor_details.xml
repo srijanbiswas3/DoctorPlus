@@ -8,8 +8,8 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background"
-        app:title="Doctor Details"
+        android:background="@drawable/toolbar_background"
+        app:title="     Doctor Details"
         app:titleTextColor="@android:color/white"
         android:id="@+id/toolbar"
         />
@@ -17,7 +17,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_below="@+id/toolbar"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:id="@+id/docimg"
         android:src="@drawable/ic_profile"/>
     <TextView
@@ -25,10 +25,11 @@
         android:layout_height="wrap_content"
         android:text="Dr........"
         android:id="@+id/docnametxt"
+        android:textColor="@color/background"
         android:layout_alignTop="@+id/docimg"
         android:layout_toRightOf="@+id/docimg"
         android:layout_margin="5dp"
-        android:textSize="20sp"/>
+        android:textSize="25sp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,16 +39,17 @@
         android:id="@+id/doctypetxt"
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="5dp"
-        android:textSize="15sp"/>
+        android:textSize="17sp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email..."
         android:id="@+id/docemailtxt"
+        android:textColor="@color/background"
         android:layout_below="@+id/doctypetxt"
         android:layout_toRightOf="@+id/docimg"
         android:layout_marginLeft="5dp"
-        android:textSize="10sp"/>
+        android:textSize="13sp"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,13 +61,15 @@
         >
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="10">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="About"
             android:textSize="20dp"
             android:id="@+id/about"
+            android:textColor="@android:color/black"
             android:layout_margin="5dp"
             />
         <TextView
@@ -74,7 +78,7 @@
             android:text="This displays the details of doctor"
             android:id="@+id/abouttxt"
             android:layout_margin="5dp"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:layout_below="@+id/about"
             />
             <TextView
@@ -82,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:text="Qualifications"
                 android:textSize="20dp"
+                android:textColor="@android:color/black"
                 android:id="@+id/qualification"
                 android:layout_margin="5dp"
                 android:layout_below="@+id/abouttxt"
@@ -92,7 +97,7 @@
                 android:text="This displays the Qualification of doctor"
                 android:id="@+id/qualificationtxt"
                 android:layout_margin="5dp"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:layout_below="@+id/qualification"
                 />
             <TextView
@@ -101,6 +106,7 @@
                 android:text="Work Place"
                 android:id="@+id/workplace"
                 android:textSize="20dp"
+                android:textColor="@android:color/black"
                 android:layout_margin="5dp"
                 android:layout_below="@+id/qualificationtxt"
                 />
@@ -110,7 +116,7 @@
                 android:text="This displays the Work Place of doctor"
                 android:id="@+id/workplacetxt"
                 android:layout_margin="5dp"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:layout_below="@+id/workplace"
                 />
             <TextView
@@ -119,17 +125,19 @@
                 android:text="See Location In Map"
                 android:layout_below="@id/workplacetxt"
                 android:textSize="20dp"
-                android:layout_margin="15dp"/>
+                android:textColor="@android:color/black"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="5dp"/>
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_below="@+id/workplacetxt"
                 android:layout_alignParentRight="true"
                 android:text="MAP"
                 android:id="@+id/map"
-                android:background="@color/background"
+                android:background="@drawable/btn_background"
                 android:textColor="@android:color/white"/>
 
         </RelativeLayout>
@@ -142,7 +150,7 @@
         android:text="Request Appointment"
         android:layout_margin="20dp"
         android:id="@+id/appointbtn"
-        android:background="@color/background"
+        android:background="@drawable/btn_background"
         android:textColor="@android:color/white"/>
 
 

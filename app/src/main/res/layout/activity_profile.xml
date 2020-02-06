@@ -10,9 +10,9 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background"
-        app:title="Sign Up"
+        android:layout_height="50dp"
+        android:background="@drawable/toolbar_background"
+        app:title="     Sign Up"
         app:titleTextColor="@android:color/white" />
 
     <ScrollView
@@ -38,6 +38,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:hint="Email address"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_background"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,6 +56,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/email"
                     android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_background"
                     android:hint="Password (minimum 8 characters)"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -70,6 +76,9 @@
                     android:layout_below="@+id/password"
                     android:layout_margin="20dp"
                     android:hint="Mobile Number"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_background"
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,6 +93,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/phnumber"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_background"
                     android:layout_margin="20dp"
                     android:hint="Full Name" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -98,7 +110,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="100dp"
-        android:background="@color/background"
+        android:background="@drawable/btn_background"
         android:text="Create Account"
         android:textColor="@android:color/white"></Button>
 
@@ -110,7 +122,7 @@
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:layout_marginBottom="20dp"
-        android:background="@color/cardview_dark_background"
+        android:background="@drawable/btn_background2"
         android:text="Cancel"
         android:textColor="@android:color/white"></Button>
 

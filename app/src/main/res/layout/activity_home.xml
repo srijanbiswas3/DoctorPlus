@@ -11,14 +11,14 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp">
+        android:paddingBottom="50dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/background"
-            app:title="Doctor Saheb"
+            android:layout_height="50dp"
+            android:background="@drawable/toolbar_background"
+            app:title="     Doctor Saheb"
             app:titleTextColor="@android:color/white" />
 
         <TextView
@@ -27,8 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar"
             android:layout_margin="5dp"
-            android:textSize="15sp" />
-
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:textSize="20sp" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
@@ -42,8 +43,9 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
-            android:layout_margin="10dp"
-            android:background="@color/cardview_dark_background"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_background2"
             android:text="logout"
             android:textColor="@android:color/white" />
     </RelativeLayout>
