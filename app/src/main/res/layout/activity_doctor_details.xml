@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DoctorDetails">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        app:title="Doctor Details"
+        app:titleTextColor="@android:color/white"
+        android:id="@+id/toolbar"
+        />
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_margin="10dp"
+        android:id="@+id/docimg"
+        android:src="@drawable/ic_profile"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dr........"
+        android:id="@+id/docnametxt"
+        android:layout_alignTop="@+id/docimg"
+        android:layout_toRightOf="@+id/docimg"
+        android:layout_margin="5dp"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type..."
+        android:layout_toRightOf="@+id/docimg"
+        android:layout_below="@+id/docnametxt"
+        android:id="@+id/doctypetxt"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="15sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email..."
+        android:id="@+id/docemailtxt"
+        android:layout_below="@+id/doctypetxt"
+        android:layout_toRightOf="@+id/docimg"
+        android:layout_marginLeft="5dp"
+        android:textSize="10sp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/docemailtxt"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="60dp"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About"
+            android:textSize="20dp"
+            android:id="@+id/about"
+            android:layout_margin="5dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This displays the details of doctor"
+            android:id="@+id/abouttxt"
+            android:layout_margin="5dp"
+            android:textSize="15dp"
+            android:layout_below="@+id/about"
+            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Qualifications"
+                android:textSize="20dp"
+                android:id="@+id/qualification"
+                android:layout_margin="5dp"
+                android:layout_below="@+id/abouttxt"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This displays the Qualification of doctor"
+                android:id="@+id/qualificationtxt"
+                android:layout_margin="5dp"
+                android:textSize="15dp"
+                android:layout_below="@+id/qualification"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Work Place"
+                android:id="@+id/workplace"
+                android:textSize="20dp"
+                android:layout_margin="5dp"
+                android:layout_below="@+id/qualificationtxt"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This displays the Work Place of doctor"
+                android:id="@+id/workplacetxt"
+                android:layout_margin="5dp"
+                android:textSize="15dp"
+                android:layout_below="@+id/workplace"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See Location In Map"
+                android:layout_below="@id/workplacetxt"
+                android:textSize="20dp"
+                android:layout_margin="15dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/workplacetxt"
+                android:layout_alignParentRight="true"
+                android:text="MAP"
+                android:id="@+id/map"
+                android:background="@color/background"
+                android:textColor="@android:color/white"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:text="Request Appointment"
+        android:layout_margin="20dp"
+        android:id="@+id/appointbtn"
+        android:background="@color/background"
+        android:textColor="@android:color/white"/>
+
+
+
+</RelativeLayout>

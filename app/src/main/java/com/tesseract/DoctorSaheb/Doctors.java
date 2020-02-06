@@ -4,19 +4,52 @@ import android.widget.ImageView;
 
 public class Doctors {
 
-    public String name;
-    public String email;
-    public String type;
-    public String profileimg;
+    String name;
+    String email;
+    String type;
+    String profileimg;
+    String about;
+    String qualifications;
+    String workplace;
+
     public Doctors() {
     }
-
-    public Doctors(String name, String email, String type, String profileimg) {
+    public Doctors(String name, String email, String type, String profileimg, String about, String qualifications, String workplace) {
         this.name = name;
         this.email = email;
         this.type = type;
         this.profileimg = profileimg;
+        this.about = about;
+        this.qualifications = qualifications;
+        this.workplace = workplace;
     }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public String getQualifications() {
+        return qualifications;
+    }
+
+    public void setQualifications(String qualifications) {
+        this.qualifications = qualifications;
+    }
+
+    public String getWorkplace() {
+        return workplace;
+    }
+
+    public void setWorkplace(String workplace) {
+        this.workplace = workplace;
+    }
+
+
+
 
     public String getName() {
         return name;

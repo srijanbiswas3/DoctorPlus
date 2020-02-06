@@ -6,8 +6,7 @@ public class Member {
     private String Mobile;
     private String Name;
 
-    public Member()
-    {
+    public Member() {
 
     }
 

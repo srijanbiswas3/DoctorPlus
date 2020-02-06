@@ -1,57 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/botsheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/botsheet"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     android:background="@android:color/white"
-    app:behavior_peekHeight="50dp">
+    android:orientation="vertical"
+    app:behavior_peekHeight="50dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
     <View
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/colorPrimaryDark"/>
+        android:background="@color/colorPrimaryDark" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Drag Up To load Settings"
-        android:gravity="center_horizontal"
         android:layout_marginBottom="50dp"
-        />
+        android:gravity="center_horizontal"
+        android:id="@+id/drag"
+        android:text="^Drag Up To load Settings^" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:text="Choose location"
-        android:textSize="20sp"
-        android:layout_marginLeft="20dp"
-        />
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
     <Spinner
+        android:id="@+id/location"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_margin="20dp"
-        android:spinnerMode="dialog"
-        android:id="@+id/location"/>
+        android:spinnerMode="dialog" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose Problem type"
-        android:textSize="20sp"
         android:layout_marginLeft="20dp"
-        />
+        android:text="Choose Problem type"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
     <Spinner
-        android:spinnerMode="dialog"
+        android:id="@+id/ptype"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_margin="20dp"
-        android:id="@+id/ptype"/>
+        android:spinnerMode="dialog" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search"
-        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@color/background"
+        android:text="Search"
+        android:id="@+id/search"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

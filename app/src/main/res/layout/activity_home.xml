@@ -8,41 +8,47 @@
     tools:context="com.tesseract.DoctorSaheb.HomeActivity">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/relativeLayout"
         android:layout_marginBottom="60dp">
+
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:background="@color/background"
             app:title="Doctor Saheb"
-            android:id="@+id/toolbar"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:textSize="15sp"
-        android:layout_margin="5dp"
-        android:id="@+id/welcome"/>
+            app:titleTextColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_margin="5dp"
+            android:textSize="15sp" />
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recyclerview"
             android:layout_below="@+id/welcome"
-            android:layout_margin="7dp"
-            android:layout_marginBottom="15dp"
+            android:layout_margin="10dp"
             />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="logout"
-        android:id="@+id/logout"
-        android:layout_alignParentEnd="true"/>
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10dp"
+            android:background="@color/cardview_dark_background"
+            android:text="logout"
+            android:textColor="@android:color/white" />
     </RelativeLayout>
-    <include layout="@layout/bottom_sheet" />
 
+    <include layout="@layout/bottom_sheet" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

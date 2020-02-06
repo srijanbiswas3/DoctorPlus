@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:layout_marginBottom="7dp"
+    android:orientation="vertical"
     app:cardCornerRadius="5dp"
     app:cardElevation="3dp">
 
@@ -28,7 +28,8 @@
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/docimg"
             android:hint="Dr. ..........."
-            android:textSize="25dp" />
+            android:textColor="@color/background"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/doctype"
@@ -38,6 +39,7 @@
             android:layout_marginTop="35dp"
             android:layout_toRightOf="@+id/docimg"
             android:hint="Type- ....."
+            android:textColor="@color/cardview_dark_background"
             android:textSize="15dp" />
 
         <TextView
@@ -48,6 +50,7 @@
             android:layout_marginTop="55dp"
             android:layout_toRightOf="@+id/docimg"
             android:hint="Email- ..........."
+            android:textColor="@color/colorAccent"
             android:textSize="10dp" />
 
         <Button
@@ -57,7 +60,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="10dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/background"
+            android:textColor="@android:color/white"
             android:text="view" />
     </RelativeLayout>
 

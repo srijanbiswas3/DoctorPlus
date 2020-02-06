@@ -9,8 +9,8 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/colorPrimary"
+        android:layout_height="280dp"
+        android:background="@color/background"
         android:orientation="horizontal">
 
         <ImageView
@@ -18,17 +18,16 @@
             android:layout_height="120dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/ic_launcher_foreground" />
+            android:background="@drawable/logodoc" />
 
     </RelativeLayout>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="80dp"
         android:layout_below="@id/relativeLayout"
-        android:layout_marginTop="-50dp"
-        android:background="@drawable/ic_launcher_foreground" />
+        android:background="@color/colorAccent" />
 
     <RelativeLayout
         android:id="@+id/container"
@@ -44,17 +43,16 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
-            android:text="Wait for the code I sent You"
+            android:text="Enter The OTP you will recive"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimary" />
 
         <ProgressBar
+            android:id="@+id/progressbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/progressbar"
             android:layout_below="@id/textView"
-            android:layout_centerHorizontal="true"
-             />
+            android:layout_centerHorizontal="true" />
 
         <EditText
             android:id="@+id/editTextCode"
@@ -76,7 +74,7 @@
             android:layout_below="@id/editTextCode"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/background"
             android:text="Sign In"
             android:textAllCaps="false"
             android:textColor="#cdd8f1" />

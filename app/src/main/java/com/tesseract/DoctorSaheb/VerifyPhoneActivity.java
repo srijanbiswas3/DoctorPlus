@@ -3,6 +3,7 @@ package com.tesseract.DoctorSaheb;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -20,6 +21,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.tesseract.DoctorSaheb.R;
 
 import java.util.concurrent.TimeUnit;
@@ -39,6 +45,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     String mobile;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +54,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         //initializing objects
         mAuth = FirebaseAuth.getInstance();
         editTextCode = findViewById(R.id.editTextCode);
-        progressBar=findViewById(R.id.progressbar);
-
+        progressBar = findViewById(R.id.progressbar);
 
 
         //getting mobile number from the previous activity
@@ -132,7 +138,6 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     }
 
 
-
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(VerifyPhoneActivity.this, new OnCompleteListener<AuthResult>() {
@@ -141,7 +146,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             //verification successful we will start the profile activity
                             Intent intent = new Intent(VerifyPhoneActivity.this, ProfileActivity.class);
-                            intent.putExtra("phone",mobile);
+                            intent.putExtra("phone", mobile);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 
