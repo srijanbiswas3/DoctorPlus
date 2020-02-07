@@ -122,6 +122,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
+            Toast.makeText(getApplicationContext(),"OTP Sent",Toast.LENGTH_SHORT).show();
 
             //storing the verification id that is sent to the user
             mVerificationId = s;
@@ -155,9 +156,11 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                             //verification unsuccessful.. display an error message
 
                             String message = "Somthing is wrong, we will fix it soon...";
+                            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
 
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 message = "Invalid code entered...";
+                                Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                             }
 
                         }

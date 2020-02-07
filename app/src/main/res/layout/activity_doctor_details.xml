@@ -13,6 +13,20 @@
         app:titleTextColor="@android:color/white"
         android:id="@+id/toolbar"
         />
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/btn_background2"
+        android:text="Cancel appointment"
+        android:textAllCaps="false"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@android:color/white" />
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -77,6 +91,7 @@
             android:layout_height="wrap_content"
             android:text="This displays the details of doctor"
             android:id="@+id/abouttxt"
+            android:background="@color/botsheet"
             android:layout_margin="5dp"
             android:textSize="20dp"
             android:layout_below="@+id/about"
@@ -96,6 +111,7 @@
                 android:layout_height="wrap_content"
                 android:text="This displays the Qualification of doctor"
                 android:id="@+id/qualificationtxt"
+                android:background="@color/botsheet"
                 android:layout_margin="5dp"
                 android:textSize="20dp"
                 android:layout_below="@+id/qualification"
@@ -116,6 +132,7 @@
                 android:text="This displays the Work Place of doctor"
                 android:id="@+id/workplacetxt"
                 android:layout_margin="5dp"
+                android:background="@color/botsheet"
                 android:textSize="20dp"
                 android:layout_below="@+id/workplace"
                 />

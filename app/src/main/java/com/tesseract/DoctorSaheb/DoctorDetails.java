@@ -29,15 +29,16 @@ import com.squareup.picasso.Picasso;
 public class DoctorDetails extends AppCompatActivity {
     ImageView docimg;
     TextView docname, docemail, doctype, docabout, docqualification, docworkplace;
-    Button map, appointbtn;
+    Button map, appointbtn,cancel;
     DatabaseReference userref, docref,appref;
     Doctors doc, doc2;
     Member member;
     String mobile;
     FirebaseAuth auth;
     String nam;
-    int apno=0;
     Appointment appointment;
+    DataSnapshot ds2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class DoctorDetails extends AppCompatActivity {
         docqualification = findViewById(R.id.qualificationtxt);
         docworkplace = findViewById(R.id.workplacetxt);
         map = findViewById(R.id.map);
+        cancel = findViewById(R.id.cancel);
         appointbtn = findViewById(R.id.appointbtn);
         auth = FirebaseAuth.getInstance();
         appointment=new Appointment();
@@ -93,14 +95,21 @@ public class DoctorDetails extends AppCompatActivity {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         if(ds.child("doctorname").getValue().toString().equals(name) && ds.child("username").getValue().toString().equals(nam))
                         {
-                            appointbtn.setBackgroundColor(Color.BLUE);
+                            ds2=ds;
+
+                            appointbtn.setBackgroundResource(R.drawable.btn_background3);
                             appointbtn.setClickable(false);
                             appointbtn.setText("Appointment Requested");
+                            cancel.setVisibility(View.VISIBLE);
+                        }
+                        else {
+                            appointment.setDoctorname(name);
+                            appointment.setUsername(nam);
+                            appointment.setStatus("Requested");
                         }
                     }
                 }
                 else {
-                    apno = (int) dataSnapshot.getChildrenCount();
                     appointment.setDoctorname(name);
                     appointment.setUsername(nam);
                     appointment.setStatus("Requested");
@@ -118,11 +127,22 @@ public class DoctorDetails extends AppCompatActivity {
         appointbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                appointbtn.setBackgroundColor(Color.BLUE);
-                appref.child("appointment"+(apno+1)).setValue(appointment);
+                appointbtn.setBackgroundResource(R.drawable.btn_background3);
+                appref.push().setValue(appointment);
                 appointbtn.setClickable(false);
                 appointbtn.setText("Appointment Requested");
 
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ds2.getRef().removeValue();
+                appointbtn.setBackgroundResource(R.drawable.btn_background);
+                appointbtn.setText("REQuEST APPOINTMENT");
+                appointbtn.setClickable(true);
+                cancel.setVisibility(View.GONE);
             }
         });
 
