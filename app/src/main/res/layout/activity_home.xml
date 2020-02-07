@@ -21,6 +21,7 @@
             app:title="     Doctor Saheb"
             app:titleTextColor="@android:color/white" />
 
+
         <TextView
             android:id="@+id/welcome"
             android:layout_width="wrap_content"
@@ -30,6 +31,26 @@
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:textSize="20sp" />
+
+        <ProgressBar
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/progress"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dataloadingtxt"
+            android:text="Please Be Patient while \n the Data is Loading!"
+            android:layout_below="@+id/progress"
+            android:gravity="center"
+            android:textStyle="italic"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"

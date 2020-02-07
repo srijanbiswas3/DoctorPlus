@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="110dp"
         android:paddingTop="40dp"
         android:paddingBottom="40dp">
 
@@ -109,7 +109,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="70dp"
         android:background="@drawable/btn_background"
         android:text="Create Account"
         android:textColor="@android:color/white"></Button>

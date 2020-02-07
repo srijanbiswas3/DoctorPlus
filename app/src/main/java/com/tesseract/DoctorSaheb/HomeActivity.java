@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -44,7 +45,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-    TextView welcome;
+    TextView welcome,dataloadingtxt;
     Button logout, viewbtn, search, clear;
     BottomSheetBehavior bottomSheetBehavior;
     LinearLayout linearLayout;
@@ -56,6 +57,9 @@ public class HomeActivity extends AppCompatActivity {
     private DoctorAdapter adapter;
     String spinner1item, spinner2item;
     FirebaseAuth auth;
+    ProgressBar progressBar;
+    String nam;
+    String mobile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,8 @@ public class HomeActivity extends AppCompatActivity {
         viewbtn = findViewById(R.id.viewbtn);
         search = findViewById(R.id.search);
         clear = findViewById(R.id.clear);
+        dataloadingtxt = findViewById(R.id.dataloadingtxt);
+        progressBar = findViewById(R.id.progress);
         recyclerview = findViewById(R.id.recyclerview);
         auth = FirebaseAuth.getInstance();
         doctorsList = new ArrayList<>();
@@ -81,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
         databaseReference.addListenerForSingleValueEvent(valueEventListener);
         databaseReference.keepSynced(true);
         reff = FirebaseDatabase.getInstance().getReference().child("Member");
-
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
         String[] loca = {"Location", "Ghaziabad", "Agra", "Firozabad", "Gazipur", "Meerut", "Hapur", "Mirzapur", "Varanasi", "Sitapur", "Etawah"};
         String[] type = {"Type", "ENT Specialist", "Orthopadist", "gynaecologist", "Dermatologists", "Allergists", "Cardiologists", "Gastroenterologists"};
@@ -89,6 +95,8 @@ public class HomeActivity extends AppCompatActivity {
         loc.addAll(Arrays.asList(loca));
         List<String> typep = new ArrayList<>();
         typep.addAll(Arrays.asList(type));
+        progressBar.setVisibility(View.VISIBLE);
+        dataloadingtxt.setVisibility(View.VISIBLE);
 
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, loc);
@@ -128,22 +136,19 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
-        /*String name = getIntent().getStringExtra("name");
-        welcome.setText("Welcome " + name);
-*/
-     /*  Query query=FirebaseDatabase.getInstance().getReference().child("Member").orderByChild("mobile").equalTo(mobile);
-       query.addListenerForSingleValueEvent(valueEventListener);*/
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String mobile = auth.getCurrentUser().getPhoneNumber().toString();
+                mobile = auth.getCurrentUser().getPhoneNumber().toString();
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
 
                         if (data.child("mobile").getValue().toString().equals(mobile)) {
-                            String nam = data.child("name").getValue().toString();
-                            welcome.setText("Welcome "+nam);
+                            nam = data.child("name").getValue().toString();
+                            welcome.setText("Welcome " + nam);
+                            progressBar.setVisibility(View.GONE);
+                            dataloadingtxt.setVisibility(View.GONE);
+
                         }
                     }
                 }
@@ -165,7 +170,13 @@ public class HomeActivity extends AppCompatActivity {
 
 
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                query.addListenerForSingleValueEvent(valueEventListener);
+                if(location.getSelectedItemPosition()==0 && ptype.getSelectedItemPosition()==0)
+                {
+                    databaseReference.addListenerForSingleValueEvent(valueEventListener);
+                }
+                else {
+                    query.addListenerForSingleValueEvent(valueEventListener);
+                }
 
 
             }
@@ -177,6 +188,7 @@ public class HomeActivity extends AppCompatActivity {
                 query.addListenerForSingleValueEvent(valueEventListener);
                 location.setSelection(0);
                 ptype.setSelection(0);
+
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
@@ -200,6 +212,9 @@ public class HomeActivity extends AppCompatActivity {
                     doctorsList.add(doctor);
                 }
                 adapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+                dataloadingtxt.setVisibility(View.GONE);
+
             } else {
                 Toast.makeText(getApplicationContext(), "data not found", Toast.LENGTH_SHORT).show();
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
@@ -231,9 +246,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-
-        //  adapter.startListening();
 
 
     }
@@ -241,7 +253,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        //  adapter.stopListening();
     }
 
     @Override
