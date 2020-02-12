@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Doctor Saheb</string>
+    <string name="app_name">Doctor Plus</string>
     <string name="phone_number">Phone Number</string>
     <string name="generate_otp">Generate OTP</string>
     <string name="enter_otp">Enter OTP</string>

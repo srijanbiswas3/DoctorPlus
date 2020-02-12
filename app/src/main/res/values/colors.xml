@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#5bb4b4</color>
-    <color name="colorPrimaryDark">#2196F3</color>
+    <color name="colorPrimaryDark">#003076</color>
     <color name="colorAccent">#7fbcf5</color>
     <color name="textColor">#292929</color>
-    <color name="background">#2196F3</color>
+   <!-- <color name="background">#2196F3</color>-->
+    <color name="background">#003076</color>
     <color name="botsheet">#F5F8FE</color>
 
 </resources>

@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/toolbar_background"
-            app:title="     Doctor Saheb"
+            app:title="     Doctor Plus"
             app:titleTextColor="@android:color/white" />
 
 
