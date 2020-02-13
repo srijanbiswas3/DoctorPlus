@@ -4,6 +4,6 @@
         android:toXScale="1"
         android:fromYScale="1"
         android:toYScale="1"
-        android:duration="2000"/>
+        android:duration="3000"/>
 
 </set>

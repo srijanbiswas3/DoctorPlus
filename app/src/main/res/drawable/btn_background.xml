@@ -4,8 +4,8 @@
         android:bottomRightRadius="250dp"
         android:topLeftRadius="100dp"
         android:topRightRadius="100dp"/>
-    <gradient android:startColor="@color/background"
-        android:endColor="@android:color/holo_blue_bright"/>
+    <gradient android:endColor="@color/background"
+        android:startColor="@android:color/holo_blue_bright"/>
 
 
 </shape>

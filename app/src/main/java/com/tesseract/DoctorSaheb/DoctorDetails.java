@@ -130,7 +130,10 @@ public class DoctorDetails extends AppCompatActivity {
                 appointbtn.setBackgroundResource(R.drawable.btn_background3);
                 appref.push().setValue(appointment);
                 appointbtn.setClickable(false);
+                Toast.makeText(getApplicationContext(),"Appointment Requested",Toast.LENGTH_SHORT).show();
+
                 appointbtn.setText("Appointment Requested");
+
 
             }
         });
@@ -140,7 +143,8 @@ public class DoctorDetails extends AppCompatActivity {
             public void onClick(View v) {
                 ds2.getRef().removeValue();
                 appointbtn.setBackgroundResource(R.drawable.btn_background);
-                appointbtn.setText("REQuEST APPOINTMENT");
+                appointbtn.setText("REQUEST APPOINTMENT");
+                Toast.makeText(getApplicationContext(),"Appointment request Cancelled",Toast.LENGTH_SHORT).show();
                 appointbtn.setClickable(true);
                 cancel.setVisibility(View.GONE);
             }

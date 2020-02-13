@@ -4,8 +4,6 @@
         android:bottomRightRadius="100dp"
         android:topLeftRadius="250dp"
         android:topRightRadius="250dp"/>
-    <gradient android:startColor="@color/cardview_dark_background"
-        android:endColor="@android:color/holo_blue_light"/>
-
+    <solid android:color="@android:color/darker_gray"/>
 
 </shape>

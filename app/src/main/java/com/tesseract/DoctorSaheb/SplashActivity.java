@@ -12,9 +12,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 public class SplashActivity extends AppCompatActivity {
-ImageView roll,tape,logo;
+ImageView roll,tape,logo,name;
 Animation rightmove,fadein,lefttoright;
-    private final int SPLASH_DISPLAY_TIMER = 2500;
+    private final int SPLASH_DISPLAY_TIMER = 3000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +27,11 @@ Animation rightmove,fadein,lefttoright;
         roll=findViewById(R.id.roll);
         tape=findViewById(R.id.tape);
         logo=findViewById(R.id.logo);
+        name=findViewById(R.id.name);
         roll.setAnimation(rightmove);
         tape.setAnimation(lefttoright);
         logo.setAnimation(fadein);
+        name.setAnimation(fadein);
 
         new Handler().postDelayed(new Runnable() {
             @Override

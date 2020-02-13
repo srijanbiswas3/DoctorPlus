@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <gradient android:startColor="@android:color/black"
-        android:endColor="@color/cardview_dark_background"/>
+    <gradient android:endColor="@android:color/black"
+        android:startColor="#E4A045"/>
     <corners android:topRightRadius="400dp"
         android:bottomRightRadius="200dp"
         android:topLeftRadius="400dp"
