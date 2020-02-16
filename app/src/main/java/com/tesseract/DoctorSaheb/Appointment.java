@@ -6,11 +6,21 @@ public class Appointment {
     String doctorname;
     String username;
     String status;
+    String time;
     public Appointment(){}
-    public Appointment(String doctorname, String username, String status) {
+    public Appointment(String doctorname, String username, String status,String time) {
         this.doctorname = doctorname;
         this.username = username;
         this.status = status;
+        this.time=time;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getStatus() {

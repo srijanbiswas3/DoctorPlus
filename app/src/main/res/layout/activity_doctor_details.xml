@@ -1,175 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".DoctorDetails">
-    <androidx.appcompat.widget.Toolbar
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/toolbar_background"
-        app:title="     Doctor Details"
-        app:titleTextColor="@android:color/white"
-        android:id="@+id/toolbar"
-        />
-    <Button
-        android:id="@+id/cancel"
-        android:layout_width="wrap_content"
-        android:visibility="gone"
-        android:layout_height="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/btn_background2"
-        android:text="Cancel appointment"
-        android:textAllCaps="false"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColor="@android:color/white" />
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_below="@+id/toolbar"
-        android:layout_margin="20dp"
-        android:id="@+id/docimg"
-        android:src="@drawable/ic_profile"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dr........"
-        android:id="@+id/docnametxt"
-        android:textColor="@color/background"
-        android:layout_alignTop="@+id/docimg"
-        android:layout_toRightOf="@+id/docimg"
-        android:layout_margin="5dp"
-        android:textSize="25sp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Type..."
-        android:layout_toRightOf="@+id/docimg"
-        android:layout_below="@+id/docnametxt"
-        android:id="@+id/doctypetxt"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="5dp"
-        android:textSize="17sp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email..."
-        android:id="@+id/docemailtxt"
-        android:textColor="@color/background"
-        android:layout_below="@+id/doctypetxt"
-        android:layout_toRightOf="@+id/docimg"
-        android:layout_marginLeft="5dp"
-        android:textSize="13sp"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/docemailtxt"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="60dp"
-        >
-        <RelativeLayout
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:background="@drawable/toolbar_background"
+            app:title="     Doctor Details"
+            app:titleTextColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/btn_background2"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Cancel appointment"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/docimg"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_below="@+id/toolbar"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_profile" />
+
         <TextView
+            android:id="@+id/docnametxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About"
-            android:textSize="20dp"
-            android:id="@+id/about"
-            android:textColor="@android:color/black"
+            android:layout_alignTop="@+id/docimg"
             android:layout_margin="5dp"
-            />
+            android:layout_toRightOf="@+id/docimg"
+            android:text="Dr........"
+            android:textColor="@color/background"
+            android:textSize="25sp" />
+
         <TextView
+            android:id="@+id/doctypetxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="This displays the details of doctor"
-            android:id="@+id/abouttxt"
-            android:background="@color/botsheet"
-            android:layout_margin="5dp"
-            android:textSize="20dp"
-            android:layout_below="@+id/about"
-            />
-            <TextView
+            android:layout_below="@+id/docnametxt"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@+id/docimg"
+            android:text="Type..."
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/docemailtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/doctypetxt"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/docimg"
+            android:text="Email..."
+            android:textColor="@color/background"
+            android:textSize="13sp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/docemailtxt"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="60dp">
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Qualifications"
-                android:textSize="20dp"
-                android:textColor="@android:color/black"
-                android:id="@+id/qualification"
-                android:layout_margin="5dp"
-                android:layout_below="@+id/abouttxt"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="This displays the Qualification of doctor"
-                android:id="@+id/qualificationtxt"
-                android:background="@color/botsheet"
-                android:layout_margin="5dp"
-                android:textSize="20dp"
-                android:layout_below="@+id/qualification"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Work Place"
-                android:id="@+id/workplace"
-                android:textSize="20dp"
-                android:textColor="@android:color/black"
-                android:layout_margin="5dp"
-                android:layout_below="@+id/qualificationtxt"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="This displays the Work Place of doctor"
-                android:id="@+id/workplacetxt"
-                android:layout_margin="5dp"
-                android:background="@color/botsheet"
-                android:textSize="20dp"
-                android:layout_below="@+id/workplace"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="See Location In Map"
-                android:layout_below="@id/workplacetxt"
-                android:textSize="20dp"
-                android:textColor="@android:color/black"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="5dp"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:layout_below="@+id/workplacetxt"
-                android:layout_alignParentRight="true"
-                android:text="MAP"
-                android:id="@+id/map"
-                android:background="@drawable/btn_background"
-                android:textColor="@android:color/white"/>
+                android:padding="10dp">
 
-        </RelativeLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/about"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="About"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:text="Request Appointment"
-        android:layout_margin="20dp"
-        android:id="@+id/appointbtn"
-        android:background="@drawable/btn_background"
-        android:textColor="@android:color/white"/>
+                <TextView
+                    android:id="@+id/abouttxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/about"
+                    android:layout_margin="5dp"
+                    android:background="@color/botsheet"
+                    android:text="This displays the details of doctor"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/qualification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/abouttxt"
+                    android:layout_margin="5dp"
+                    android:text="Qualifications"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/qualificationtxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/qualification"
+                    android:layout_margin="5dp"
+                    android:background="@color/botsheet"
+                    android:text="This displays the Qualification of doctor"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/workplace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/qualificationtxt"
+                    android:layout_margin="5dp"
+                    android:text="Work Place"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/workplacetxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/workplace"
+                    android:layout_margin="5dp"
+                    android:background="@color/botsheet"
+                    android:text="This displays the Work Place of doctor"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/workplacetxt"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:text="See Location In Map"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/workplacetxt"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/btn_background"
+                    android:text="MAP"
+                    android:textColor="@android:color/white" />
+
+            </RelativeLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/appointbtn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_above="@+id/time"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/btn_background"
+            android:text="Request Appointment"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_alignTop="@+id/time"
+            android:id="@+id/chtime"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/edittext_background"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="change date"
+            android:textAllCaps="false"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="15dp"
+            android:textStyle="italic" />
+    </RelativeLayout>
+
+    <include layout="@layout/bottom_sheet_time" />
 
 
-
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
