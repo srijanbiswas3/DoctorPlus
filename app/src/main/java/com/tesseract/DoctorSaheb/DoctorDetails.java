@@ -1,13 +1,9 @@
 package com.tesseract.DoctorSaheb;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,19 +16,16 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class DoctorDetails extends AppCompatActivity {
     ImageView docimg;
-    TextView docname, docemail, doctype, docabout, docqualification, docworkplace, time;
+    TextView docname, docemail, doctype, docabout, docqualification, docworkplace, time,canceltxt;
     Button map, appointbtn, cancel, confirm, chtime;
     LinearLayout linear, botsheettime;
     DatabaseReference userref, docref, appref;
@@ -46,8 +39,8 @@ public class DoctorDetails extends AppCompatActivity {
     BottomSheetBehavior bottomSheetBehavior;
     RadioGroup rg;
     RadioButton rb;
-    String[] names = {"Monday    8:30AM", "Monday    7:30PM", "Wednesday 10:30AM", "Wednesday 6:30PM", "Friday    8:30AM", "Friday    6:30PM"};
-
+    String[] names = {"Monday         8:30AM", "Monday         7:30PM", "Wednesday  10:30AM", "Wednesday    6:30PM", "Thursday         7:00AM", "Thursday         9:30AM", "Friday              7:00AM", "Friday              6:30PM"};
+    int flag = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +61,7 @@ public class DoctorDetails extends AppCompatActivity {
         confirm = findViewById(R.id.confirm);
         time = findViewById(R.id.time);
         chtime = findViewById(R.id.chtime);
+        canceltxt = findViewById(R.id.canceltxt);
         bottomSheetBehavior = BottomSheetBehavior.from(botsheettime);
         chtime.setVisibility(View.GONE);
 
@@ -96,13 +90,15 @@ public class DoctorDetails extends AppCompatActivity {
 
         rg = new RadioGroup(this);
         rg.setOrientation(RadioGroup.VERTICAL);
-        RadioGroup.LayoutParams r1;
         for (int i = 0; i < names.length; i++) {
             rb = new RadioButton(this);
             rb.setText(names[i]);
-            // r1=new RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT,RadioGroup.LayoutParams.MATCH_PARENT);
             rg.addView(rb);
-
+            rb.setTextColor(getResources().getColor(R.color.background));
+            rb.setTextSize(18);
+            Typeface face = Typeface.createFromAsset(getAssets(),
+                    "font/muli.ttf");
+            rb.setTypeface(face);
         }
         linear.addView(rg);
 
@@ -111,25 +107,29 @@ public class DoctorDetails extends AppCompatActivity {
             public void onClick(View v) {
                 int selectedId = rg.getCheckedRadioButtonId();
                 RadioButton radioButton = (RadioButton) findViewById(selectedId);
+
                 tim = radioButton.getText().toString();
+
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 time.setText("on " + tim);
                 appointment.setTime(tim);
-                if(ds2==null)
-                {
+                if (ds2 == null) {
                     appref.push().setValue(appointment);
-                }
-                else {
+                } else {
                     ds2.getRef().removeValue();
                     appref.push().setValue(appointment);
-                   // appref.child(ds2.getRef().toString()).child("time").setValue(tim);
-                }
+                    // appref.child(ds2.getRef().toString()).child("time").setValue(tim);
 
+                }
 
 
                 chtime.setVisibility(View.VISIBLE);
-                Toast.makeText(getApplicationContext(),"Appointment Requested",Toast.LENGTH_SHORT).show();
+                if (flag == 1) {
+                    Toast.makeText(getApplicationContext(), "Appointment day and time Changed", Toast.LENGTH_SHORT).show();
 
+                } else {
+                    Toast.makeText(getApplicationContext(), "Appointment Requested", Toast.LENGTH_SHORT).show();
+                }
 
 
             }
@@ -138,10 +138,10 @@ public class DoctorDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                flag = 1;
 
             }
         });
-
 
 
         userref.addValueEventListener(new ValueEventListener() {
@@ -169,7 +169,7 @@ public class DoctorDetails extends AppCompatActivity {
                             appointbtn.setClickable(false);
                             appointbtn.setText("Appointment Requested");
                             chtime.setVisibility(View.VISIBLE);
-                            time.setText("-on "+ds2.child("time").getValue().toString());
+                            time.setText("-on " + ds2.child("time").getValue().toString());
                             if (appointment.getTime() == null) {
 
                             } else {
@@ -214,7 +214,7 @@ public class DoctorDetails extends AppCompatActivity {
             public void onClick(View v) {
                 ds2.getRef().removeValue();
                 appointbtn.setBackgroundResource(R.drawable.btn_background);
-                appointbtn.setText("REQUEST APPOINTMENT");
+                appointbtn.setText("Request Appointment");
                 Toast.makeText(getApplicationContext(), "Appointment request Cancelled", Toast.LENGTH_SHORT).show();
                 appointbtn.setClickable(true);
                 cancel.setVisibility(View.GONE);

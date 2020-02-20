@@ -5,13 +5,16 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
     android:orientation="vertical"
-    app:cardCornerRadius="13dp"
-    app:cardBackgroundColor="@color/botsheet"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="@android:color/white"
     app:cardElevation="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="120dp"
+        android:id="@+id/card">
+
 
         <ImageView
             android:id="@+id/docimg"
@@ -29,8 +32,8 @@
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/docimg"
             android:hint="Dr. ..........."
-            android:textColor="@color/background"
-            android:textSize="20dp" />
+            android:textColor="#3949AB"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/doctype"
@@ -41,7 +44,7 @@
             android:layout_toRightOf="@+id/docimg"
             android:hint="Type- ....."
             android:textColor="@color/cardview_dark_background"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/docemail"
@@ -52,18 +55,26 @@
             android:layout_toRightOf="@+id/docimg"
             android:hint="Email- ..........."
             android:textColor="@color/colorAccent"
-            android:textSize="13dp" />
+            android:textSize="13sp" />
 
-        <Button
-            android:id="@+id/viewbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="10dp"
-            android:background="@drawable/btn_background"
-            android:textColor="@android:color/white"
-            android:text="view" />
+
+        <View
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/arrow"
+            android:layout_marginRight="5dp"
+            android:stateListAnimator="@null"
+            android:elevation="10dp"
+            android:layout_alignParentRight="true"/>
+        <View
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/arrow"
+            android:layout_marginRight="-7dp"
+            android:stateListAnimator="@null"
+            android:elevation="10dp"
+            android:layout_alignParentRight="true"/>
+
     </RelativeLayout>
 
 

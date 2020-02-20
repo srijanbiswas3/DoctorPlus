@@ -7,34 +7,35 @@
     android:background="@drawable/botsheet_background"
     android:orientation="vertical"
     android:padding="15dp"
-    app:behavior_peekHeight="53dp"
+    android:layout_margin="10dp"
+    app:behavior_peekHeight="50dp"
     android:elevation="10dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
     <View
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="-17dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/arrow" />
-    <View
-        android:layout_width="match_parent"
+        android:layout_width="40dp"
         android:layout_height="5dp"
-        android:layout_marginTop="-10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="20dp"
         android:layout_gravity="center_horizontal"
-        android:background="@color/colorPrimaryDark" />
+        android:background="@drawable/view"
+        />
+
 
 
 <Button
     android:layout_width="wrap_content"
     android:layout_height="30dp"
     android:text="Clear filters"
-    android:background="@drawable/btn_background2"
-    android:textColor="@android:color/white"
+    android:background="@drawable/edittext_background"
+    android:textColor="@color/background"
     android:textAllCaps="false"
+    android:padding="5dp"
+    android:fontFamily="@font/muli"
+    android:stateListAnimator="@null"
     android:id="@+id/clear"
+
+    android:elevation="4dp"
+    android:translationZ="3dp"
     android:textStyle="italic"
     android:layout_margin="20dp"/>
     <TextView
@@ -42,30 +43,49 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:text="Choose location"
+        android:fontFamily="@font/muli_bold"
         android:textStyle="italic"
         android:textColor="@color/colorAccent"
         android:textSize="20sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/view"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
 
     <Spinner
         android:id="@+id/location"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:spinnerMode="dialog" />
+        android:spinnerMode="dialog"
+        android:elevation="10dp"
+        android:popupBackground="@drawable/botsheet_background"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="Choose Problem type"
+        android:text="Choose Department"
         android:textColor="@color/colorAccent"
+        android:fontFamily="@font/muli_bold"
         android:textSize="20sp"
         android:textStyle="italic"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/view"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
 
     <Spinner
         android:id="@+id/ptype"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:spinnerMode="dialog" />
 
@@ -74,6 +94,11 @@
         android:layout_height="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:textAllCaps="false"
+        android:elevation="2dp"
+        android:translationZ="2dp"
+        android:textSize="20sp"
+        android:stateListAnimator="@null"
         android:layout_marginBottom="20dp"
         android:background="@drawable/btn_background"
         android:text="Search"

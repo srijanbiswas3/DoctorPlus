@@ -4,21 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".SplashActivity">
+     <include layout="@layout/background"/>
      <TextView
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_centerInParent="true"
          android:id="@+id/reference"/>
+
      <ImageView
-         android:layout_width="200dp"
-         android:layout_height="200dp"
+         android:layout_width="220dp"
+         android:layout_height="220dp"
+         android:id="@+id/shadow"
+         android:layout_marginBottom="-25dp"
+         android:layout_centerHorizontal="true"
+         android:layout_above="@+id/reference"
+         android:src="@drawable/shadow"
+         />
+     <ImageView
+         android:layout_width="1700dp"
+         android:layout_height="170dp"
          android:id="@+id/logo"
          android:layout_centerHorizontal="true"
          android:layout_above="@+id/reference"
          android:src="@drawable/logo2"
          />
+
      <ImageView
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"

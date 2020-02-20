@@ -3,15 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/botsheet"
+
     android:layout_height="match_parent"
 
     tools:context="com.tesseract.DoctorSaheb.ProfileActivity">
 
+    <include layout="@layout/background"/>
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:elevation="3dp"
+        android:translationZ="3dp"
+        android:stateListAnimator="@null"
         android:background="@drawable/toolbar_background"
         app:title="     Sign Up"
         app:titleTextColor="@android:color/white" />
@@ -20,17 +24,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
-        android:background="@color/botsheet"
         android:layout_marginBottom="90dp"
         android:paddingTop="10dp"
         android:paddingBottom="40dp">
+
+
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ed1"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -40,6 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:hint="Email address"
+                    android:fontFamily="@font/muli"
                     android:gravity="center"
                     android:padding="8dp"
                     android:background="@drawable/edittext_background"
@@ -59,6 +67,7 @@
                     android:layout_below="@+id/email"
                     android:layout_margin="20dp"
                     android:gravity="center"
+                    android:fontFamily="@font/muli"
                     android:padding="8dp"
                     android:background="@drawable/edittext_background"
                     android:hint="Password (minimum 8 characters)"
@@ -79,6 +88,7 @@
                     android:layout_margin="20dp"
                     android:hint="Mobile Number"
                     android:gravity="center"
+                    android:fontFamily="@font/muli"
                     android:padding="8dp"
                     android:background="@drawable/edittext_background"
                     android:inputType="number" />
@@ -99,8 +109,41 @@
                     android:padding="8dp"
                     android:background="@drawable/edittext_background"
                     android:layout_margin="20dp"
+                    android:fontFamily="@font/muli"
                     android:hint="Full Name" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/ed4">
+                <Button
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:id="@+id/male"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/muli_bold"
+                    android:textAllCaps="false"
+                    android:textSize="18sp"
+                    android:background="@color/background"
+                    />
+                <Button
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Female"
+                    android:textAllCaps="false"
+                    android:id="@+id/female"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/muli_bold"
+                    android:background="@color/background2"/>
+
+            </LinearLayout>
         </RelativeLayout>
     </ScrollView>
 
@@ -112,8 +155,15 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="70dp"
+        android:elevation="2dp"
+        android:translationZ="2dp"
+        android:shadowColor="@android:color/white"
+        android:stateListAnimator="@null"
+        android:fontFamily="@font/muli"
+        android:textAllCaps="false"
         android:background="@drawable/btn_background"
         android:text="Create Account"
+        android:textSize="20sp"
         android:textColor="@android:color/white"></Button>
 
     <Button
@@ -124,6 +174,13 @@
         android:layout_marginLeft="100dp"
         android:layout_marginRight="100dp"
         android:layout_marginBottom="20dp"
+        android:fontFamily="@font/muli"
+        android:elevation="2dp"
+        android:translationZ="2dp"
+        android:shadowColor="@android:color/white"
+        android:stateListAnimator="@null"
+        android:textAllCaps="false"
+        android:textSize="18sp"
         android:background="@drawable/btn_background2"
         android:text="Cancel"
         android:textColor="@android:color/white"></Button>

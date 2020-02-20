@@ -139,7 +139,7 @@ public class ProfileActivity extends AppCompatActivity {
                     member.setPassword(Password);
                     member.setMobile(Mobile);
                     member.setName(Name);
-                    reff.child(auth.getUid()).setValue(member);
+                    reff.child(auth.getUid().toString()).setValue(member);
 
 
                     Toast.makeText(getApplicationContext(), "Account Created Succesfully", Toast.LENGTH_LONG).show();

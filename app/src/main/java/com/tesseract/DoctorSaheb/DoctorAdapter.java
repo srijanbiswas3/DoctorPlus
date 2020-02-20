@@ -2,34 +2,29 @@ package com.tesseract.DoctorSaheb;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DatabaseError;
+
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayOutputStream;
+
 import java.util.List;
 
-public class DoctorAdapter extends RecyclerView.Adapter< DoctorAdapter.DoctorsViewHolder> {
+public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorsViewHolder> {
     private Context mCtx;
     private List<Doctors> doctorsList;
-    public DoctorAdapter()
-    {
+
+    public DoctorAdapter() {
 
     }
 
@@ -52,18 +47,18 @@ public class DoctorAdapter extends RecyclerView.Adapter< DoctorAdapter.DoctorsVi
         holder.temail.setText(doc.getEmail());
         holder.ttype.setText(doc.getType());
         Picasso.get().load(doc.getProfileimg()).into(holder.timg);
-        holder.viewbtn.setOnClickListener(new View.OnClickListener() {
+        holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(holder.viewbtn.getContext(),DoctorDetails.class);
-                intent.putExtra("name",doc.getName());
-                intent.putExtra("email",doc.getEmail());
-                intent.putExtra("type",doc.getType());
-                intent.putExtra("about",doc.getAbout());
-                intent.putExtra("qualification",doc.getQualifications());
-                intent.putExtra("workplace",doc.getWorkplace());
-                intent.putExtra("img",doc.getProfileimg());
-                holder.viewbtn.getContext().startActivity(intent);
+                Intent intent = new Intent(holder.card.getContext(), DoctorDetails.class);
+                intent.putExtra("name", doc.getName());
+                intent.putExtra("email", doc.getEmail());
+                intent.putExtra("type", doc.getType());
+                intent.putExtra("about", doc.getAbout());
+                intent.putExtra("qualification", doc.getQualifications());
+                intent.putExtra("workplace", doc.getWorkplace());
+                intent.putExtra("img", doc.getProfileimg());
+                holder.card.getContext().startActivity(intent);
 
             }
         });
@@ -79,7 +74,7 @@ public class DoctorAdapter extends RecyclerView.Adapter< DoctorAdapter.DoctorsVi
 
         TextView tname, temail, ttype;
         ImageView timg;
-        Button viewbtn;
+        RelativeLayout card;
 
         public DoctorsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -87,7 +82,8 @@ public class DoctorAdapter extends RecyclerView.Adapter< DoctorAdapter.DoctorsVi
             temail = itemView.findViewById(R.id.docemail);
             ttype = itemView.findViewById(R.id.doctype);
             timg = itemView.findViewById(R.id.docimg);
-            viewbtn=itemView.findViewById(R.id.viewbtn);
+            card = itemView.findViewById(R.id.card);
+
 
         }
     }

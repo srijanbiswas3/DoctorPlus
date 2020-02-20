@@ -17,6 +17,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:elevation="3dp"
+            android:translationZ="3dp"
+            android:stateListAnimator="@null"
             android:background="@drawable/toolbar_background"
             app:title="     Doctor Plus"
             app:titleTextColor="@android:color/white" />
@@ -26,10 +29,12 @@
             android:id="@+id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/muli"
             android:layout_below="@+id/toolbar"
-            android:layout_margin="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="3dp"
             android:textColor="@android:color/black"
-            android:textStyle="bold"
+
             android:textSize="20sp" />
 
         <ProgressBar
@@ -54,20 +59,42 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/welcome"
-            android:layout_margin="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_margin="5dp"
             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/logout"
+            android:layout_marginLeft="-55dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/muli_bold"
+            android:textStyle="italic"
+            android:elevation="4dp"
+            android:translationZ="2dp"
+            android:stateListAnimator="@null"
+            android:text="Log out"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/logout"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:fontFamily="@font/muli"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btn_background2"
-            android:text="logout"
+            android:textAllCaps="false"
+            android:elevation="4dp"
+            android:translationZ="2dp"
+            android:stateListAnimator="@null"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/logout"
             android:textColor="@android:color/white" />
     </RelativeLayout>
 

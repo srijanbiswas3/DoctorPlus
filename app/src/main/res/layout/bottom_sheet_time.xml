@@ -7,18 +7,19 @@
     android:background="@drawable/botsheet_background"
     android:orientation="vertical"
     android:padding="15dp"
+    android:layout_margin="10dp"
     app:behavior_peekHeight="0dp"
     android:elevation="10dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <View
-        android:layout_width="match_parent"
+        android:layout_width="30dp"
         android:layout_height="5dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="20dp"
         android:layout_gravity="center_horizontal"
-        android:background="@color/colorPrimaryDark" />
+        android:background="@drawable/view" />
 
 
 
@@ -28,10 +29,18 @@
         android:layout_marginLeft="20dp"
         android:text="Choose Day and time"
         android:textStyle="italic"
+        android:fontFamily="@font/muli_bold"
         android:textColor="@color/colorAccent"
         android:textSize="20sp" />
-    <ScrollView
-        android:layout_margin="10dp"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/view"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+    <androidx.core.widget.NestedScrollView
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="230dp">
 
@@ -48,15 +57,22 @@
                 android:layout_gravity="center"/>-->
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/btn_background"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="2dp"
+        android:translationZ="2dp"
+        android:stateListAnimator="@null"
         android:layout_gravity="bottom"
         android:id="@+id/confirm"
+        android:textSize="18sp"
+        android:textAllCaps="false"
         android:text="Confirm"
         android:textColor="@android:color/white"/>
 

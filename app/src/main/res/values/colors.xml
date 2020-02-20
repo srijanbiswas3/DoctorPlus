@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#7fbcf5</color>
-    <color name="colorPrimaryDark">#003CFF</color>
+    <color name="colorPrimaryDark">#3949AB</color>
     <color name="colorAccent">#7fbcf5</color>
-    <color name="textColor">#292929</color>
-   <!-- <color name="background">#2196F3</color>-->
-    <color name="background">#003CFF</color>
+    <color name="background">#3949AB</color>
+    <color name="background2">#2962FF</color>
+    <!--<color name="background">#003CFF</color>-->
     <color name="botsheet">#EDF3FE</color>
+    <color name="lightgrey">#DADADA</color>
 
 </resources>

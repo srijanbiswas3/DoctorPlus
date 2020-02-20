@@ -45,8 +45,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-    TextView welcome,dataloadingtxt;
-    Button logout, viewbtn, search, clear;
+    TextView welcome, dataloadingtxt;
+    Button logout, search, clear;
     BottomSheetBehavior bottomSheetBehavior;
     LinearLayout linearLayout;
     Spinner location;
@@ -71,7 +71,6 @@ public class HomeActivity extends AppCompatActivity {
         bottomSheetBehavior = BottomSheetBehavior.from(linearLayout);
         location = findViewById(R.id.location);
         ptype = findViewById(R.id.ptype);
-        viewbtn = findViewById(R.id.viewbtn);
         search = findViewById(R.id.search);
         clear = findViewById(R.id.clear);
         dataloadingtxt = findViewById(R.id.dataloadingtxt);
@@ -90,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
         String[] loca = {"Location", "Ghaziabad", "Agra", "Firozabad", "Gazipur", "Meerut", "Hapur", "Mirzapur", "Varanasi", "Sitapur", "Etawah"};
-        String[] type = {"Type", "ENT Specialist", "Orthopadist", "gynaecologist", "Dermatologists", "Allergists", "Cardiologists", "Gastroenterologists"};
+        String[] type = {"Type", "ENT Specialist", "Orthopadist", "gynaecologist", "Dermatologists", "Allergist", "Cardiologist", "Gastroenterologist", "General Physician"};
         List<String> loc = new ArrayList<String>();
         loc.addAll(Arrays.asList(loca));
         List<String> typep = new ArrayList<>();
@@ -99,8 +98,9 @@ public class HomeActivity extends AppCompatActivity {
         dataloadingtxt.setVisibility(View.VISIBLE);
 
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, loc);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, loc);
+        arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         location.setAdapter(arrayAdapter);
         location.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -117,8 +117,8 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-        ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, typep);
-        arrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<>(this, R.layout.spinner_item, typep);
+        arrayAdapter2.setDropDownViewResource(R.layout.spinner_item);
         ptype.setAdapter(arrayAdapter2);
         ptype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -146,6 +146,7 @@ public class HomeActivity extends AppCompatActivity {
                         if (data.child("mobile").getValue().toString().equals(mobile)) {
                             nam = data.child("name").getValue().toString();
                             welcome.setText("Welcome " + nam);
+                            Toast.makeText(getApplicationContext(),"Welcome "+nam,Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                             dataloadingtxt.setVisibility(View.GONE);
 
@@ -170,11 +171,9 @@ public class HomeActivity extends AppCompatActivity {
 
 
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                if(location.getSelectedItemPosition()==0 && ptype.getSelectedItemPosition()==0)
-                {
+                if (location.getSelectedItemPosition() == 0 && ptype.getSelectedItemPosition() == 0) {
                     databaseReference.addListenerForSingleValueEvent(valueEventListener);
-                }
-                else {
+                } else {
                     query.addListenerForSingleValueEvent(valueEventListener);
                 }
 
@@ -195,6 +194,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
+                Toast.makeText(getApplicationContext(), " Logged out", Toast.LENGTH_LONG).show();
+
                 Intent intent = new Intent(HomeActivity.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
