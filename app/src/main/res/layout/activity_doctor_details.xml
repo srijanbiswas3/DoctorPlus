@@ -19,7 +19,7 @@
             android:elevation="3dp"
             android:stateListAnimator="@null"
             android:translationZ="3dp"
-            app:title="     Doctor Details"
+            app:title="Doctor Details"
             app:titleTextColor="@android:color/white" />
 
         <TextView
@@ -304,7 +304,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:text="dsfgsdfgsdf"
+            android:text=""
             android:layout_marginRight="30dp"
             android:layout_marginBottom="20dp"
             android:textSize="15dp"

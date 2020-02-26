@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.tesseract.DoctorSaheb.R;
 
 public class ProfileActivity extends AppCompatActivity {
-    Button logout;
+    Button logout, male, female;
     EditText email, phnumber, password, name;
     Button create;
 
@@ -33,6 +34,8 @@ public class ProfileActivity extends AppCompatActivity {
     String mobile;
     FirebaseAuth auth;
     FirebaseUser firebaseUser;
+    String Gender = "";
+    TextView gendertxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,9 @@ public class ProfileActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         name = findViewById(R.id.name);
         create = findViewById(R.id.create);
+        gendertxt = findViewById(R.id.gendertxt);
+        male = findViewById(R.id.male);
+        female = findViewById(R.id.female);
         auth = FirebaseAuth.getInstance();
         firebaseUser = auth.getCurrentUser();
         member = new Member();
@@ -126,6 +132,23 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        male.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                male.setText("\u2713" + " Male");
+                female.setText("Female");
+                Gender = "Male";
+
+            }
+        });
+        female.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                female.setText("\u2713" + " Female");
+                male.setText("Male");
+                Gender = "Female";
+            }
+        });
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,12 +156,15 @@ public class ProfileActivity extends AppCompatActivity {
                 String Password = password.getText().toString();
                 String Mobile = phnumber.getText().toString();
                 String Name = name.getText().toString();
-                boolean l = validate(Email, Password, Mobile, Name);
+
+
+                boolean l = validate(Email, Password, Mobile, Name, Gender);
                 if (l) {
                     member.setEmail(Email);
                     member.setPassword(Password);
                     member.setMobile(Mobile);
                     member.setName(Name);
+                    member.setGender(Gender);
                     reff.child(auth.getUid().toString()).setValue(member);
 
 
@@ -153,7 +179,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
 
-            private boolean validate(String Email, String Password, String Mobile, String Name) {
+            private boolean validate(String Email, String Password, String Mobile, String Name, String Gender) {
                 if (Email.isEmpty()) {
                     email.setError("Enter Email");
                     email.requestFocus();
@@ -169,7 +195,7 @@ public class ProfileActivity extends AppCompatActivity {
                 if (Mobile.isEmpty()) {
 
                     phnumber.setError("Enter name");
-                    if (!Name.isEmpty())
+                    if (!Password.isEmpty())
                         phnumber.requestFocus();
 
                 }
@@ -179,7 +205,13 @@ public class ProfileActivity extends AppCompatActivity {
                         name.requestFocus();
 
                 }
-                if (!Email.isEmpty() && !Mobile.isEmpty() && !Password.isEmpty() && !Name.isEmpty()) {
+                if (Gender.equals("")) {
+                    gendertxt.setError("Select your Gender");
+                    if (!Name.isEmpty())
+                        gendertxt.requestFocus();
+
+                }
+                if (!Email.isEmpty() && !Mobile.isEmpty() && !Password.isEmpty() && !Name.isEmpty() && !Gender.equals("")) {
                     return true;
                 }
                 return false;

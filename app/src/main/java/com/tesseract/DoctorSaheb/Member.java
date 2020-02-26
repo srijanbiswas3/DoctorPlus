@@ -5,9 +5,26 @@ public class Member {
     private String Password;
     private String Mobile;
     private String Name;
+    private String Gender;
 
     public Member() {
 
+    }
+
+    public Member(String email, String password, String mobile, String name, String gender) {
+        Email = email;
+        Password = password;
+        Mobile = mobile;
+        Name = name;
+        Gender = gender;
+    }
+
+    public String getGender() {
+        return Gender;
+    }
+
+    public void setGender(String gender) {
+        Gender = gender;
     }
 
     public String getEmail() {

@@ -45,17 +45,17 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:782053404422:android:683aea6d398a9854227887",
+        "mobilesdk_app_id": "1:782053404422:android:23df6548fd833ce0227887",
         "android_client_info": {
-          "package_name": "com.tesseract.Doctro"
+          "package_name": "com.tesseract.doctorplusd"
         }
       },
       "oauth_client": [
         {
-          "client_id": "782053404422-2brpu7qf10h1qqjhteq2t649rhmpemrh.apps.googleusercontent.com",
+          "client_id": "782053404422-rbi3odj83mu600g3r2vr6gn39eq655hs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.tesseract.Doctro",
+            "package_name": "com.tesseract.doctorplusd",
             "certificate_hash": "6169fde7dc1ae967259e122eb69727c40a5bc200"
           }
         },

@@ -11,10 +11,12 @@ public class Doctors {
     String about;
     String qualifications;
     String workplace;
+    String location;
+    String gender;
+    String yoe;
+    String mobile;
 
-    public Doctors() {
-    }
-    public Doctors(String name, String email, String type, String profileimg, String about, String qualifications, String workplace) {
+    public Doctors(String name, String email, String type, String profileimg, String about, String qualifications, String workplace, String location, String gender, String yoe,String mobile) {
         this.name = name;
         this.email = email;
         this.type = type;
@@ -22,6 +24,44 @@ public class Doctors {
         this.about = about;
         this.qualifications = qualifications;
         this.workplace = workplace;
+        this.location = location;
+        this.gender = gender;
+        this.yoe = yoe;
+        this.mobile=mobile;
+    }
+    public Doctors(){
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getYoe() {
+        return yoe;
+    }
+
+    public void setYoe(String yoe) {
+        this.yoe = yoe;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getAbout() {

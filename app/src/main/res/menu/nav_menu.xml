@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/viewapp"
+        android:title="Your Appointments"
+        android:icon="@drawable/arrow"
+        />
+    <group>
+    <item
+        android:id="@+id/edprofile"
+        android:title="Edit Profile"
+        android:icon="@drawable/arrow"
+        />
+    <item
+        android:id="@+id/apphistory"
+        android:title="Appointment History"
+        android:icon="@drawable/arrow"
+        />
+    <item
+        android:id="@+id/events"
+        android:title="Events "
+        android:icon="@drawable/arrow"
+        />
+    </group>
+</menu>

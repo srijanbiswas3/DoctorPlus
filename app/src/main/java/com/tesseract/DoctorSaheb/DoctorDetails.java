@@ -2,6 +2,7 @@ package com.tesseract.DoctorSaheb;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -25,12 +26,12 @@ import com.squareup.picasso.Picasso;
 
 public class DoctorDetails extends AppCompatActivity {
     ImageView docimg;
-    TextView docname, docemail, doctype, docabout, docqualification, docworkplace, time,canceltxt;
+    TextView docname, docemail, doctype, docabout, docqualification, docworkplace, time, canceltxt;
     Button map, appointbtn, cancel, confirm, chtime;
+
     LinearLayout linear, botsheettime;
     DatabaseReference userref, docref, appref;
     Doctors doc, doc2;
-    Member member;
     String mobile, tim;
     FirebaseAuth auth;
     String nam;
@@ -41,6 +42,7 @@ public class DoctorDetails extends AppCompatActivity {
     RadioButton rb;
     String[] names = {"Monday         8:30AM", "Monday         7:30PM", "Wednesday  10:30AM", "Wednesday    6:30PM", "Thursday         7:00AM", "Thursday         9:30AM", "Friday              7:00AM", "Friday              6:30PM"};
     int flag = 0;
+    String name,type,about,qualification,workplace,img,email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,20 +66,23 @@ public class DoctorDetails extends AppCompatActivity {
         canceltxt = findViewById(R.id.canceltxt);
         bottomSheetBehavior = BottomSheetBehavior.from(botsheettime);
         chtime.setVisibility(View.GONE);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.back);
 
 
         auth = FirebaseAuth.getInstance();
         appointment = new Appointment();
         doc = new Doctors();
         appref = FirebaseDatabase.getInstance().getReference().child("Appointment");
+        docref = FirebaseDatabase.getInstance().getReference().child("Doctors");
         userref = FirebaseDatabase.getInstance().getReference().child("Member").child("" + auth.getUid());
-        final String name = getIntent().getStringExtra("name");
-        String email = getIntent().getStringExtra("email");
-        String type = getIntent().getStringExtra("type");
-        String about = getIntent().getStringExtra("about");
-        String qualification = getIntent().getStringExtra("qualification");
-        String workplace = getIntent().getStringExtra("workplace");
-        String img = getIntent().getStringExtra("img");
+        name = getIntent().getStringExtra("name");
+        email = getIntent().getStringExtra("email");
+        type = getIntent().getStringExtra("type");
+        about = getIntent().getStringExtra("about");
+        qualification = getIntent().getStringExtra("qualification");
+        workplace = getIntent().getStringExtra("workplace");
+        img = getIntent().getStringExtra("img");
         doc.setProfileimg(img);
         Picasso.get().load(doc.getProfileimg()).into(docimg);
         docname.setText(name);
@@ -87,6 +92,7 @@ public class DoctorDetails extends AppCompatActivity {
         docqualification.setText(qualification);
         docworkplace.setText(workplace);
         mobile = auth.getCurrentUser().getPhoneNumber().toString();
+        doc2=doc;
 
         rg = new RadioGroup(this);
         rg.setOrientation(RadioGroup.VERTICAL);
@@ -144,6 +150,31 @@ public class DoctorDetails extends AppCompatActivity {
         });
 
 
+        docref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        if (ds.child("name").getValue().toString().equals(name)) {
+                            Picasso.get().load(ds.child("profileimg").getValue().toString()).into(docimg);
+                            docemail.setText(ds.child("email").getValue().toString());
+                            doctype.setText(ds.child("type").getValue().toString());
+                            docabout.setText(ds.child("about").getValue().toString());
+                            docqualification.setText(ds.child("qualifications").getValue().toString());
+                            docworkplace.setText(ds.child("workplace").getValue().toString());
+                           // Toast.makeText(getApplicationContext(),doc2.getEmail(),Toast.LENGTH_SHORT).show();
+
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         userref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -164,11 +195,19 @@ public class DoctorDetails extends AppCompatActivity {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         if (ds.child("doctorname").getValue().toString().equals(name) && ds.child("username").getValue().toString().equals(nam)) {
                             ds2 = ds;
+                            if(ds.child("status").getValue().toString().equals("Requested")) {
+                                appointbtn.setBackgroundResource(R.drawable.btn_background3);
+                                appointbtn.setClickable(false);
+                                appointbtn.setText("Appointment Requested");
 
-                            appointbtn.setBackgroundResource(R.drawable.btn_background3);
-                            appointbtn.setClickable(false);
-                            appointbtn.setText("Appointment Requested");
-                            chtime.setVisibility(View.VISIBLE);
+                                chtime.setVisibility(View.VISIBLE);
+                            }
+                            else if(ds.child("status").getValue().toString().equals("Confirmed"))
+                            {
+                                appointbtn.setBackgroundResource(R.drawable.status_color_green);
+                                appointbtn.setClickable(false);
+                                appointbtn.setText("Appointment Confirmed");
+                            }
                             time.setText("-on " + ds2.child("time").getValue().toString());
                             if (appointment.getTime() == null) {
 
@@ -226,4 +265,5 @@ public class DoctorDetails extends AppCompatActivity {
 
 
     }
+
 }

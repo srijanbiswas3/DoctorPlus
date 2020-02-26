@@ -3,6 +3,7 @@ package com.tesseract.DoctorSaheb;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,7 +11,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +28,12 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -60,6 +65,8 @@ public class HomeActivity extends AppCompatActivity {
     ProgressBar progressBar;
     String nam;
     String mobile;
+    Toolbar toolbar;
+    NavigationView nav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +94,47 @@ public class HomeActivity extends AppCompatActivity {
         databaseReference.keepSynced(true);
         reff = FirebaseDatabase.getInstance().getReference().child("Member");
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.menu1);
+        toolbar.setNavigationOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DrawerLayout navDrawer = findViewById(R.id.draw);
+                        // If the navigation drawer is not open then open it, if its already open then close it.
+                        if (!navDrawer.isDrawerOpen(Gravity.LEFT))
+                            navDrawer.openDrawer(Gravity.LEFT);
+                        else navDrawer.closeDrawer(Gravity.LEFT);
+                    }
+                }
+        );
+        nav = (NavigationView) findViewById(R.id.nav);
+        nav.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                        int id=menuItem.getItemId();
+                        switch (id)
+                        {
+                            case R.id.viewapp:
+                                Intent intent=new Intent(HomeActivity.this,ViewAppointment.class);
+                                intent.putExtra("name",nam);
+                                startActivity(intent);
+                                break;
+                            case R.id.edprofile:
+                                Toast.makeText(HomeActivity.this,"clicked srefer",Toast.LENGTH_LONG).show();
+                                break;
+                            case R.id.apphistory:
+                                Toast.makeText(HomeActivity.this,"clicked order",Toast.LENGTH_LONG).show();
+                                break;
+                            case R.id.events:
+                                Toast.makeText(HomeActivity.this,"clicked book",Toast.LENGTH_LONG).show();
+                                break;
+                        }
+                        return false;
+                    }
+                }
+        );
 
         String[] loca = {"Location", "Ghaziabad", "Agra", "Firozabad", "Gazipur", "Meerut", "Hapur", "Mirzapur", "Varanasi", "Sitapur", "Etawah"};
         String[] type = {"Type", "ENT Specialist", "Orthopadist", "gynaecologist", "Dermatologists", "Allergist", "Cardiologist", "Gastroenterologist", "General Physician"};

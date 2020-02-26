@@ -24,7 +24,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorsVie
     private Context mCtx;
     private List<Doctors> doctorsList;
 
-    public DoctorAdapter() {
+    public DoctorAdapter(ViewAppointment mCtx, List<Appointment> appointmentList) {
 
     }
 
