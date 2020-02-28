@@ -2,24 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/viewapp"
-        android:title="Your Appointments"
-        android:icon="@drawable/arrow"
+        android:title="My Appointments"
+        android:icon="@drawable/myappointment"
         />
     <group>
     <item
         android:id="@+id/edprofile"
         android:title="Edit Profile"
-        android:icon="@drawable/arrow"
+        android:icon="@drawable/ic_profile"
         />
     <item
         android:id="@+id/apphistory"
         android:title="Appointment History"
-        android:icon="@drawable/arrow"
+        android:icon="@drawable/apphistory"
         />
     <item
         android:id="@+id/events"
         android:title="Events "
-        android:icon="@drawable/arrow"
+        android:icon="@drawable/alert"
         />
     </group>
 </menu>

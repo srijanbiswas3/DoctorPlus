@@ -55,13 +55,32 @@
             android:visibility="gone" />
 
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/docimg"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:padding="2dp"
             android:layout_below="@+id/toolbar"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="17dp"
+            android:layout_marginBottom="20dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@android:color/white"
             android:src="@drawable/ic_profile" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/docimg"
+            android:text="Age: "
+            android:layout_marginTop="-12dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/muli"
+            android:textSize="15sp"
+            android:textColor="@color/background"
+            android:id="@+id/age"
+            android:layout_alignLeft="@+id/docimg"
+            android:layout_marginLeft="10dp"/>
 
         <TextView
             android:id="@+id/docnametxt"
@@ -157,12 +176,44 @@
                             android:textSize="17sp" />
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>
+                <TextView
+                    android:id="@+id/yoe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/aboutscroll"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/muli_bold"
+                    android:text="Years of Experience"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_above="@+id/yoetxt"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/view" />
+
+                <TextView
+                    android:id="@+id/yoetxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/yoe"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/txtbackgroug"
+                    android:fontFamily="@font/muli"
+                    android:padding="5dp"
+                    android:text="This displays the YOE"
+                    android:textColor="@color/background"
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/qualification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/aboutscroll"
+                    android:layout_below="@+id/yoetxt"
                     android:layout_margin="5dp"
                     android:fontFamily="@font/muli_bold"
                     android:text="Qualifications"
@@ -223,11 +274,43 @@
                     android:text="This displays the Work Place of doctor"
                     android:textColor="@color/background"
                     android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/workplacetxt"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/muli_bold"
+                    android:text="Location"
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_above="@+id/locationtxt"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/view" />
+
+                <TextView
+                    android:id="@+id/locationtxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/location"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/txtbackgroug"
+                    android:fontFamily="@font/muli"
+                    android:padding="5dp"
+                    android:text="This displays the Location of doctor"
+                    android:textColor="@color/background"
+                    android:textSize="17sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/workplacetxt"
+                    android:layout_below="@id/locationtxt"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/muli"
@@ -241,7 +324,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:gravity="center"
-                    android:layout_below="@+id/workplacetxt"
+                    android:layout_below="@+id/locationtxt"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="31dp"
@@ -311,7 +394,7 @@
             android:textStyle="italic" />
     </RelativeLayout>
 
-    <include layout="@layout/bottom_sheet_time" />
+    <include layout="@layout/bottom_sheet_pay" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

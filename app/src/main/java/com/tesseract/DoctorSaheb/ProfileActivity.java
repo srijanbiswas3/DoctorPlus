@@ -36,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     String Gender = "";
     TextView gendertxt;
+    int g = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +55,8 @@ public class ProfileActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         firebaseUser = auth.getCurrentUser();
         member = new Member();
+        g = getIntent().getIntExtra("flag", g);
         reff = FirebaseDatabase.getInstance().getReference().child("Member");
-
         reff2 = FirebaseDatabase.getInstance().getReference().child("Member");
         reff2.keepSynced(true);
         reff.keepSynced(true);
@@ -65,18 +66,22 @@ public class ProfileActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
                         if (data.child("mobile").getValue().toString().equals(mobile)) {
-                            Toast.makeText(getApplicationContext(), "Logging In", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "Logging In", Toast.LENGTH_SHORT).show();
 
                             String nam = data.child("name").getValue().toString();
                             String em = data.child("email").getValue().toString();
                             String num = data.child("mobile").getValue().toString();
+                            String pass = data.child("password").getValue().toString();
                             email.setText(em);
                             phnumber.setText(num);
                             name.setText(nam);
-                            Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
-                            intent.putExtra("name", nam);
-                            startActivity(intent);
-                            finish();
+                            password.setText(pass);
+                            if (g == 0) {
+                                Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
+                                intent.putExtra("name", nam);
+                                startActivity(intent);
+                                finish();
+                            }
 
 
                         } else {
@@ -106,6 +111,11 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        if (g == 1) {
+            toolbar.setTitle("Edit Profile");
+            create.setText("Done");
+            findViewById(R.id.cancel).setVisibility(View.GONE);
+        }
         phnumber.setEnabled(false);
         mobile = auth.getCurrentUser().getPhoneNumber().toString();
         phnumber.setText(mobile);
@@ -113,22 +123,28 @@ public class ProfileActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Details not saved", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
+                if(g==0) {
+                    firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "Details not saved", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
 
 
-                        } else {
-                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                else
+                {
+                    finish();
+                }
             }
         });
 
@@ -171,8 +187,9 @@ public class ProfileActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Account Created Succesfully", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(ProfileActivity.this, HomeActivity.class);
                     i.putExtra("name", name.getText().toString());
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(i);
-                    finish();
+
 
                 }
 
@@ -250,22 +267,26 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //FirebaseAuth.getInstance().signOut();
-        firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Details not saved", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+        if (g == 0) {
+            firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "Details not saved", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
 
 
-                } else {
-                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            super.onBackPressed();
+        }
 
     }
 }

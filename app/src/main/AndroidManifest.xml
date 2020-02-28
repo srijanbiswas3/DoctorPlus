@@ -11,7 +11,7 @@
         android:roundIcon="@drawable/logo2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewAppointment"></activity>
+        <activity android:name=".ViewAppointment" />
         <activity android:name=".Login" />
         <activity android:name=".SplashActivity">
             <intent-filter>

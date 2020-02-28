@@ -26,7 +26,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
     private Context mCtx;
     private List<Appointment> appointmentList;
     Doctors doc ;
-    String docemail, doctype, docabout, docquali, docwork;
+    String docemail, doctype, docabout, docquali, docwork,location;
     ImageView docprofile;
     DatabaseReference docref = FirebaseDatabase.getInstance().getReference().child("Doctors");
     Appointment app;
@@ -66,6 +66,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
                         docabout = ds.child("about").getValue().toString();
                         docquali = ds.child("qualifications").getValue().toString();
                         docwork = ds.child("workplace").getValue().toString();
+                        location=ds.child("location").getValue().toString();
 
 
                         if (app.getStatus().equals("Requested")) {
@@ -84,6 +85,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
                         holder.email.setText(docemail);
                         holder.about.setText(docabout);
                         holder.quali.setText(docquali);
+                        holder.location.setText(location);
 
 
                         holder.card.setOnClickListener(new View.OnClickListener() {

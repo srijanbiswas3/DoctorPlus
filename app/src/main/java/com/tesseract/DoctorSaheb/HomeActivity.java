@@ -50,7 +50,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-    TextView welcome, dataloadingtxt;
+    TextView welcome, dataloadingtxt, filter;
     Button logout, search, clear;
     BottomSheetBehavior bottomSheetBehavior;
     LinearLayout linearLayout;
@@ -67,6 +67,7 @@ public class HomeActivity extends AppCompatActivity {
     String mobile;
     Toolbar toolbar;
     NavigationView nav;
+    String gen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,7 @@ public class HomeActivity extends AppCompatActivity {
         search = findViewById(R.id.search);
         clear = findViewById(R.id.clear);
         dataloadingtxt = findViewById(R.id.dataloadingtxt);
+        filter = findViewById(R.id.filter);
         progressBar = findViewById(R.id.progress);
         recyclerview = findViewById(R.id.recyclerview);
         auth = FirebaseAuth.getInstance();
@@ -94,7 +96,7 @@ public class HomeActivity extends AppCompatActivity {
         databaseReference.keepSynced(true);
         reff = FirebaseDatabase.getInstance().getReference().child("Member");
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.menu1);
         toolbar.setNavigationOnClickListener(
                 new View.OnClickListener() {
@@ -113,22 +115,23 @@ public class HomeActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                        int id=menuItem.getItemId();
-                        switch (id)
-                        {
+                        int id = menuItem.getItemId();
+                        switch (id) {
                             case R.id.viewapp:
-                                Intent intent=new Intent(HomeActivity.this,ViewAppointment.class);
-                                intent.putExtra("name",nam);
+                                Intent intent = new Intent(HomeActivity.this, ViewAppointment.class);
+                                intent.putExtra("name", nam);
                                 startActivity(intent);
                                 break;
                             case R.id.edprofile:
-                                Toast.makeText(HomeActivity.this,"clicked srefer",Toast.LENGTH_LONG).show();
+                                Intent intent1 = new Intent(HomeActivity.this, ProfileActivity.class);
+                                intent1.putExtra("flag", 1);
+                                startActivity(intent1);
                                 break;
                             case R.id.apphistory:
-                                Toast.makeText(HomeActivity.this,"clicked order",Toast.LENGTH_LONG).show();
+                                Toast.makeText(HomeActivity.this, "clicked History", Toast.LENGTH_LONG).show();
                                 break;
                             case R.id.events:
-                                Toast.makeText(HomeActivity.this,"clicked book",Toast.LENGTH_LONG).show();
+                                Toast.makeText(HomeActivity.this, "clicked Events", Toast.LENGTH_LONG).show();
                                 break;
                         }
                         return false;
@@ -144,7 +147,6 @@ public class HomeActivity extends AppCompatActivity {
         typep.addAll(Arrays.asList(type));
         progressBar.setVisibility(View.VISIBLE);
         dataloadingtxt.setVisibility(View.VISIBLE);
-
 
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, loc);
@@ -193,8 +195,14 @@ public class HomeActivity extends AppCompatActivity {
 
                         if (data.child("mobile").getValue().toString().equals(mobile)) {
                             nam = data.child("name").getValue().toString();
-                            welcome.setText("Welcome " + nam);
-                            Toast.makeText(getApplicationContext(),"Welcome "+nam,Toast.LENGTH_SHORT).show();
+                            filter.setText("Showing Result for: ALL");
+                            if (data.child("gender").getValue().toString().equals("Male")) {
+                                gen = "Mr.";
+                            } else {
+                                gen = "Mrs.";
+                            }
+                            welcome.setText("Welcome " + gen + nam);
+                            Toast.makeText(getApplicationContext(), "Welcome " + nam, Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                             dataloadingtxt.setVisibility(View.GONE);
 
@@ -216,12 +224,12 @@ public class HomeActivity extends AppCompatActivity {
                 Query query = FirebaseDatabase.getInstance().getReference("Doctors")
                         .orderByChild("type")
                         .equalTo(spinner2item);
-
-
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 if (location.getSelectedItemPosition() == 0 && ptype.getSelectedItemPosition() == 0) {
+                    filter.setText("Showing Result for: ALL");
                     databaseReference.addListenerForSingleValueEvent(valueEventListener);
                 } else {
+                    filter.setText("Showing Result for: " + spinner2item + " in " + spinner1item);
                     query.addListenerForSingleValueEvent(valueEventListener);
                 }
 
@@ -233,6 +241,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Query query = FirebaseDatabase.getInstance().getReference().child("Doctors");
                 query.addListenerForSingleValueEvent(valueEventListener);
+                filter.setText("Showing Result for: ALL");
                 location.setSelection(0);
                 ptype.setSelection(0);
 

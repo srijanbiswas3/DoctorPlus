@@ -15,8 +15,9 @@ public class Doctors {
     String gender;
     String yoe;
     String mobile;
+    String age;
 
-    public Doctors(String name, String email, String type, String profileimg, String about, String qualifications, String workplace, String location, String gender, String yoe,String mobile) {
+    public Doctors(String name, String email, String type, String profileimg, String about, String qualifications, String workplace, String location, String gender, String yoe,String mobile,String age) {
         this.name = name;
         this.email = email;
         this.type = type;
@@ -28,7 +29,17 @@ public class Doctors {
         this.gender = gender;
         this.yoe = yoe;
         this.mobile=mobile;
+        this.age=age;
     }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
     public Doctors(){
     }
 

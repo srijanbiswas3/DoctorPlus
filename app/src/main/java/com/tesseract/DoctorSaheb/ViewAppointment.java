@@ -1,6 +1,7 @@
 package com.tesseract.DoctorSaheb;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +39,14 @@ public class ViewAppointment extends AppCompatActivity {
         dataloadingtxt = findViewById(R.id.dataloadingtxt);
         progressBar = findViewById(R.id.progress);
         uname = findViewById(R.id.uname);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         appointmentList = new ArrayList<>();
         adapter = new AppointmentAdapter(this, appointmentList);

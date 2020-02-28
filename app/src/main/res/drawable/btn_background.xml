@@ -7,6 +7,7 @@
     <!--<gradient android:endColor="@color/background"
         android:startColor="@android:color/holo_blue_bright"/>-->
     <gradient android:endColor="@android:color/holo_blue_light"
+
         android:startColor="@color/background"/>
 
 </shape>

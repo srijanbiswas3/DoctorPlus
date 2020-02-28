@@ -34,12 +34,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/muli"
+            android:layout_centerHorizontal="true"
             android:layout_below="@+id/toolbar"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="3dp"
             android:textColor="@android:color/black"
 
             android:textSize="20sp" />
+        <TextView
+            android:id="@+id/filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/muli"
+            android:text=""
+            android:textStyle="italic"
+            android:layout_below="@+id/welcome"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="3dp"
+            android:textColor="@color/cardview_dark_background"
+
+            android:textSize="15sp" />
 
         <ProgressBar
             android:layout_width="100dp"
@@ -64,7 +78,7 @@
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/welcome"
+            android:layout_below="@+id/filter"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:paddingLeft="5dp"
@@ -109,8 +123,10 @@
         android:layout_height="match_parent"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu"
+        app:itemTextColor="@android:color/white"
+        app:itemIconTint="@android:color/white"
         android:id="@+id/nav"
-        android:background="@drawable/edittext_background"
+        android:background="@color/background"
         android:layout_gravity="start"
         >
     </com.google.android.material.navigation.NavigationView>

@@ -14,16 +14,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Toolbar
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:elevation="3dp"
-                android:translationZ="3dp"
-                android:stateListAnimator="@null"
                 android:background="@drawable/toolbar_background"
-                android:title="Your Appointments"
-                android:titleTextColor="@android:color/white"/>
+                android:elevation="3dp"
+                android:stateListAnimator="@null"
+                android:translationZ="3dp"
+                app:title="My Appointments"
+                app:titleTextColor="@android:color/white" />
 
 
             <TextView

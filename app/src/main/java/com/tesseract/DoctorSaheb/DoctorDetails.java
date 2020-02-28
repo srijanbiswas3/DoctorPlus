@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,11 +26,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
-public class DoctorDetails extends AppCompatActivity {
+import java.util.Calendar;
+
+public class DoctorDetails extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, com.wdullaer.materialdatetimepicker.time.TimePickerDialog.OnTimeSetListener{
     ImageView docimg;
-    TextView docname, docemail, doctype, docabout, docqualification, docworkplace, time, canceltxt;
-    Button map, appointbtn, cancel, confirm, chtime;
+    TextView docname, docemail, doctype, docabout, docqualification, docworkplace, time, canceltxt, location, age, yoe;
+    Button map, appointbtn, cancel, pay, chtime;
 
     LinearLayout linear, botsheettime;
     DatabaseReference userref, docref, appref;
@@ -40,9 +47,10 @@ public class DoctorDetails extends AppCompatActivity {
     BottomSheetBehavior bottomSheetBehavior;
     RadioGroup rg;
     RadioButton rb;
-    String[] names = {"Monday         8:30AM", "Monday         7:30PM", "Wednesday  10:30AM", "Wednesday    6:30PM", "Thursday         7:00AM", "Thursday         9:30AM", "Friday              7:00AM", "Friday              6:30PM"};
+    //String[] names = {"Monday         8:30AM", "Monday         7:30PM", "Wednesday  10:30AM", "Wednesday    6:30PM", "Thursday         7:00AM", "Thursday         9:30AM", "Friday              7:00AM", "Friday              6:30PM"};
     int flag = 0;
-    String name,type,about,qualification,workplace,img,email;
+    String name, type, about, qualification, workplace, img, email,dateapp,timeapp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +67,23 @@ public class DoctorDetails extends AppCompatActivity {
         cancel = findViewById(R.id.cancel);
         appointbtn = findViewById(R.id.appointbtn);
         botsheettime = findViewById(R.id.botsheettime);
-        linear = findViewById(R.id.linear);
-        confirm = findViewById(R.id.confirm);
+        pay = findViewById(R.id.pay);
         time = findViewById(R.id.time);
         chtime = findViewById(R.id.chtime);
         canceltxt = findViewById(R.id.canceltxt);
+        location = findViewById(R.id.locationtxt);
+        yoe = findViewById(R.id.yoetxt);
+        age = findViewById(R.id.age);
         bottomSheetBehavior = BottomSheetBehavior.from(botsheettime);
         chtime.setVisibility(View.GONE);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         auth = FirebaseAuth.getInstance();
@@ -92,9 +108,10 @@ public class DoctorDetails extends AppCompatActivity {
         docqualification.setText(qualification);
         docworkplace.setText(workplace);
         mobile = auth.getCurrentUser().getPhoneNumber().toString();
-        doc2=doc;
+        doc2 = doc;
 
-        rg = new RadioGroup(this);
+
+        /*rg = new RadioGroup(this);
         rg.setOrientation(RadioGroup.VERTICAL);
         for (int i = 0; i < names.length; i++) {
             rb = new RadioButton(this);
@@ -106,18 +123,20 @@ public class DoctorDetails extends AppCompatActivity {
                     "font/muli.ttf");
             rb.setTypeface(face);
         }
-        linear.addView(rg);
+        linear.addView(rg);*/
 
-        confirm.setOnClickListener(new View.OnClickListener() {
+        pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int selectedId = rg.getCheckedRadioButtonId();
+               /* int selectedId = rg.getCheckedRadioButtonId();
                 RadioButton radioButton = (RadioButton) findViewById(selectedId);
 
                 tim = radioButton.getText().toString();
 
+
+                time.setText("on " + tim);*/
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                time.setText("on " + tim);
+               tim=dateapp+", "+timeapp;
                 appointment.setTime(tim);
                 if (ds2 == null) {
                     appref.push().setValue(appointment);
@@ -143,7 +162,8 @@ public class DoctorDetails extends AppCompatActivity {
         chtime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                //bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                showDatePicker();
                 flag = 1;
 
             }
@@ -162,8 +182,9 @@ public class DoctorDetails extends AppCompatActivity {
                             docabout.setText(ds.child("about").getValue().toString());
                             docqualification.setText(ds.child("qualifications").getValue().toString());
                             docworkplace.setText(ds.child("workplace").getValue().toString());
-                           // Toast.makeText(getApplicationContext(),doc2.getEmail(),Toast.LENGTH_SHORT).show();
-
+                            location.setText(ds.child("location").getValue().toString());
+                            age.setText("Age: " + ds.child("age").getValue().toString());
+                            yoe.setText(ds.child("yoe").getValue().toString());
 
                         }
                     }
@@ -195,15 +216,13 @@ public class DoctorDetails extends AppCompatActivity {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         if (ds.child("doctorname").getValue().toString().equals(name) && ds.child("username").getValue().toString().equals(nam)) {
                             ds2 = ds;
-                            if(ds.child("status").getValue().toString().equals("Requested")) {
+                            if (ds.child("status").getValue().toString().equals("Requested")) {
                                 appointbtn.setBackgroundResource(R.drawable.btn_background3);
                                 appointbtn.setClickable(false);
                                 appointbtn.setText("Appointment Requested");
 
                                 chtime.setVisibility(View.VISIBLE);
-                            }
-                            else if(ds.child("status").getValue().toString().equals("Confirmed"))
-                            {
+                            } else if (ds.child("status").getValue().toString().equals("Confirmed")) {
                                 appointbtn.setBackgroundResource(R.drawable.status_color_green);
                                 appointbtn.setClickable(false);
                                 appointbtn.setText("Appointment Confirmed");
@@ -236,13 +255,22 @@ public class DoctorDetails extends AppCompatActivity {
             }
         });
 
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?daddr="+docworkplace.getText()+" "+location.getText()));
+                startActivity(intent);
+            }
+        });
 
         appointbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+               // bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                showDatePicker();
 
 
             }
@@ -265,5 +293,57 @@ public class DoctorDetails extends AppCompatActivity {
 
 
     }
+    private void showDatePicker() {
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog dpd = DatePickerDialog.newInstance(
+                DoctorDetails.this,
+                now.get(Calendar.YEAR), // Initial year selection
+                now.get(Calendar.MONTH), // Initial month selection
+                now.get(Calendar.DAY_OF_MONTH) // Inital day selection
+        );
 
+        dpd.setVersion(DatePickerDialog.Version.VERSION_2);
+        Calendar late = Calendar.getInstance();
+        late.add(Calendar.MONTH, 1);
+       /* Calendar date1 = Calendar.getInstance();
+        Calendar date2 = Calendar.getInstance();
+        date2.add(Calendar.DAY_OF_MONTH,1);
+        Calendar date3 = Calendar.getInstance();
+        date3.add(Calendar.DAY_OF_MONTH,4);
+        Calendar[] days={date1,date2,date3};
+        dpd.setDisabledDays(days);
+        dpd.setHighlightedDays(days);*/
+       dpd.setAccentColor(getResources().getColor(R.color.background));
+        dpd.setMinDate(now);
+        dpd.setMaxDate(late);
+        dpd.show(getSupportFragmentManager(), "Datepickerdialog");
+
+    }
+    private void showTimePicker()
+    {
+        Calendar now = Calendar.getInstance();
+        TimePickerDialog tpd = TimePickerDialog.newInstance(
+                this,
+                now.get(Calendar.HOUR_OF_DAY),
+                now.get(Calendar.MINUTE),
+                false
+        );
+        tpd.setAccentColor(getResources().getColor(R.color.background));
+        tpd.show(getSupportFragmentManager(),"Choose Time");
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+         dateapp =dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+         showTimePicker();
+    }
+
+    @Override
+    public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
+        String hourString = hourOfDay < 10 ? "0"+hourOfDay : ""+hourOfDay;
+        String minuteString = minute < 10 ? "0"+minute : ""+minute;
+         timeapp =hourString+":"+minuteString;
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+    }
 }
