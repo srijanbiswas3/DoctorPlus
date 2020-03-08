@@ -1,14 +1,21 @@
 package com.tesseract.DoctorSaheb;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +25,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,32 +35,43 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
-public class DoctorDetails extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, com.wdullaer.materialdatetimepicker.time.TimePickerDialog.OnTimeSetListener{
-    ImageView docimg;
-    TextView docname, docemail, doctype, docabout, docqualification, docworkplace, time, canceltxt, location, age, yoe;
-    Button map, appointbtn, cancel, pay, chtime;
+public class DoctorDetails extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, com.wdullaer.materialdatetimepicker.time.TimePickerDialog.OnTimeSetListener {
+    ImageView docimg, prescription;
+    TextView phone,docname, docemail, doctype, docabout, docqualification, docworkplace, time, canceltxt, location, age, yoe;
+    Button map, appointbtn, cancel, pay, chtime, uploadproceed, skipproceed;
 
-    LinearLayout linear, botsheettime;
-    DatabaseReference userref, docref, appref;
+
+    LinearLayout linear, botsheetpay, botsheetpres;
+    DatabaseReference userref, docref, appref,pres;
     Doctors doc, doc2;
     String mobile, tim;
     FirebaseAuth auth;
-    String nam;
+    String nam,phnum;
     Appointment appointment;
     DataSnapshot ds2;
-    BottomSheetBehavior bottomSheetBehavior;
+    BottomSheetBehavior bottomSheetBehavior, bottomSheetBehavior2;
     RadioGroup rg;
     RadioButton rb;
     //String[] names = {"Monday         8:30AM", "Monday         7:30PM", "Wednesday  10:30AM", "Wednesday    6:30PM", "Thursday         7:00AM", "Thursday         9:30AM", "Friday              7:00AM", "Friday              6:30PM"};
     int flag = 0;
-    String name, type, about, qualification, workplace, img, email,dateapp,timeapp;
-
+    String name, type, about, qualification, workplace, img, email, dateapp, timeapp;
+    private static final int PICK_IMAGE_REQUEST = 1888;
+    private Uri mImageUri;
+    private static final int MY_CAMERA_PERMISSION_CODE = 100;
+    private StorageReference mStorageRef;
+    Prescription prescrip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +87,8 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
         map = findViewById(R.id.map);
         cancel = findViewById(R.id.cancel);
         appointbtn = findViewById(R.id.appointbtn);
-        botsheettime = findViewById(R.id.botsheettime);
+        botsheetpay = findViewById(R.id.botsheetpay);
+        botsheetpres = findViewById(R.id.botsheetpres);
         pay = findViewById(R.id.pay);
         time = findViewById(R.id.time);
         chtime = findViewById(R.id.chtime);
@@ -74,7 +96,14 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
         location = findViewById(R.id.locationtxt);
         yoe = findViewById(R.id.yoetxt);
         age = findViewById(R.id.age);
-        bottomSheetBehavior = BottomSheetBehavior.from(botsheettime);
+        phone = findViewById(R.id.phone);
+        uploadproceed = findViewById(R.id.uploadproceed);
+        skipproceed = findViewById(R.id.skipproceed);
+        prescription = findViewById(R.id.prescription);
+
+        bottomSheetBehavior = BottomSheetBehavior.from(botsheetpay);
+        bottomSheetBehavior2 = BottomSheetBehavior.from(botsheetpres);
+
         chtime.setVisibility(View.GONE);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.back);
@@ -85,10 +114,12 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
             }
         });
 
-
         auth = FirebaseAuth.getInstance();
         appointment = new Appointment();
         doc = new Doctors();
+        prescrip = new Prescription();
+        pres = FirebaseDatabase.getInstance().getReference().child("Prescription");
+        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
         appref = FirebaseDatabase.getInstance().getReference().child("Appointment");
         docref = FirebaseDatabase.getInstance().getReference().child("Doctors");
         userref = FirebaseDatabase.getInstance().getReference().child("Member").child("" + auth.getUid());
@@ -109,52 +140,11 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
         docworkplace.setText(workplace);
         mobile = auth.getCurrentUser().getPhoneNumber().toString();
         doc2 = doc;
-
-
-        /*rg = new RadioGroup(this);
-        rg.setOrientation(RadioGroup.VERTICAL);
-        for (int i = 0; i < names.length; i++) {
-            rb = new RadioButton(this);
-            rb.setText(names[i]);
-            rg.addView(rb);
-            rb.setTextColor(getResources().getColor(R.color.background));
-            rb.setTextSize(18);
-            Typeface face = Typeface.createFromAsset(getAssets(),
-                    "font/muli.ttf");
-            rb.setTypeface(face);
-        }
-        linear.addView(rg);*/
-
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* int selectedId = rg.getCheckedRadioButtonId();
-                RadioButton radioButton = (RadioButton) findViewById(selectedId);
-
-                tim = radioButton.getText().toString();
-
-
-                time.setText("on " + tim);*/
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-               tim=dateapp+", "+timeapp;
-                appointment.setTime(tim);
-                if (ds2 == null) {
-                    appref.push().setValue(appointment);
-                } else {
-                    ds2.getRef().removeValue();
-                    appref.push().setValue(appointment);
-                    // appref.child(ds2.getRef().toString()).child("time").setValue(tim);
-
-                }
-
-
-                chtime.setVisibility(View.VISIBLE);
-                if (flag == 1) {
-                    Toast.makeText(getApplicationContext(), "Appointment day and time Changed", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    Toast.makeText(getApplicationContext(), "Appointment Requested", Toast.LENGTH_SHORT).show();
-                }
+                setAppointment();
 
 
             }
@@ -162,13 +152,23 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
         chtime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 showDatePicker();
                 flag = 1;
+                uploadproceed.setText("Upload and Set Appointment");
+                skipproceed.setText("Skip and Set Apppointment");
 
             }
         });
+phone.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent i = new Intent(Intent.ACTION_DIAL);
+        String phno="tel:"+phone.getText();
+        i.setData(Uri.parse(phno));
+        startActivity(i);
 
+    }
+});
 
         docref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -185,6 +185,7 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
                             location.setText(ds.child("location").getValue().toString());
                             age.setText("Age: " + ds.child("age").getValue().toString());
                             yoe.setText(ds.child("yoe").getValue().toString());
+                            phnum=ds.child("mobile").getValue().toString();
 
                         }
                     }
@@ -226,7 +227,11 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
                                 appointbtn.setBackgroundResource(R.drawable.status_color_green);
                                 appointbtn.setClickable(false);
                                 appointbtn.setText("Appointment Confirmed");
+                                phone.setVisibility(View.VISIBLE);
+
+                                phone.setText(phnum);
                             }
+
                             time.setText("-on " + ds2.child("time").getValue().toString());
                             if (appointment.getTime() == null) {
 
@@ -259,7 +264,7 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                        Uri.parse("http://maps.google.com/maps?daddr="+docworkplace.getText()+" "+location.getText()));
+                        Uri.parse("http://maps.google.com/maps?daddr=" + docworkplace.getText() + " " + location.getText()));
                 startActivity(intent);
             }
         });
@@ -269,7 +274,7 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
             public void onClick(View v) {
 
 
-               // bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                // bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 showDatePicker();
 
 
@@ -291,8 +296,111 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
             }
         });
 
+        prescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+
+            }
+        });
+        uploadproceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadFile();
+
+
+                bottomSheetBehavior2.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                if (flag == 0) {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                } else {
+
+                    setAppointment();
+                }
+            }
+        });
+
+        skipproceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetBehavior2.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                if (flag == 0) {
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+                } else {
+                    setAppointment();
+                }
+            }
+        });
+
 
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            mImageUri = data.getData();
+
+            Picasso.get().load(mImageUri).into(prescription);
+        }
+    }
+
+    private void uploadFile() {
+        if (mImageUri != null) {
+            mStorageRef.child(auth.getUid()+"prescription").putFile(mImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+                    return mStorageRef.child(auth.getUid()+"prescription").getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+
+                        prescrip.setDoctorname(name);
+                        prescrip.setUsername(nam);
+                        prescrip.setImage(downloadUri.toString());
+                        pres.child(nam+"_"+name.substring(3)).setValue(prescrip);
+                    } else {
+                        Toast.makeText(DoctorDetails.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+    }
+
+    private void setAppointment() {
+        tim = dateapp + ", " + timeapp;
+        appointment.setTime(tim);
+        if (ds2 == null) {
+            appref.push().setValue(appointment);
+        } else {
+            ds2.getRef().removeValue();
+            appref.push().setValue(appointment);
+
+        }
+
+
+        chtime.setVisibility(View.VISIBLE);
+        if (flag == 1) {
+            Toast.makeText(getApplicationContext(), "Appointment day and time Changed", Toast.LENGTH_SHORT).show();
+
+        } else {
+            Toast.makeText(getApplicationContext(), "Appointment Requested", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void showDatePicker() {
         Calendar now = Calendar.getInstance();
         DatePickerDialog dpd = DatePickerDialog.newInstance(
@@ -313,14 +421,14 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
         Calendar[] days={date1,date2,date3};
         dpd.setDisabledDays(days);
         dpd.setHighlightedDays(days);*/
-       dpd.setAccentColor(getResources().getColor(R.color.background));
+        dpd.setAccentColor(getResources().getColor(R.color.background));
         dpd.setMinDate(now);
         dpd.setMaxDate(late);
         dpd.show(getSupportFragmentManager(), "Datepickerdialog");
 
     }
-    private void showTimePicker()
-    {
+
+    private void showTimePicker() {
         Calendar now = Calendar.getInstance();
         TimePickerDialog tpd = TimePickerDialog.newInstance(
                 this,
@@ -329,21 +437,27 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
                 false
         );
         tpd.setAccentColor(getResources().getColor(R.color.background));
-        tpd.show(getSupportFragmentManager(),"Choose Time");
+        tpd.show(getSupportFragmentManager(), "Choose Time");
     }
+
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-         dateapp =dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-         showTimePicker();
+
+        SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
+        Date date = new Date(year, monthOfYear, dayOfMonth - 1);
+        String dayOfWeek = simpledateformat.format(date);
+        dateapp = dayOfWeek + "\n" + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+        showTimePicker();
     }
 
     @Override
     public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
-        String hourString = hourOfDay < 10 ? "0"+hourOfDay : ""+hourOfDay;
-        String minuteString = minute < 10 ? "0"+minute : ""+minute;
-         timeapp =hourString+":"+minuteString;
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        String hourString = hourOfDay < 10 ? "0" + hourOfDay : "" + hourOfDay;
+        String minuteString = minute < 10 ? "0" + minute : "" + minute;
+        timeapp = hourString + ":" + minuteString;
+
+        bottomSheetBehavior2.setState(BottomSheetBehavior.STATE_EXPANDED);
 
     }
 }

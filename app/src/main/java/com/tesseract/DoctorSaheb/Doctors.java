@@ -1,6 +1,6 @@
 package com.tesseract.DoctorSaheb;
 
-import android.widget.ImageView;
+
 
 public class Doctors {
 
@@ -16,8 +16,9 @@ public class Doctors {
     String yoe;
     String mobile;
     String age;
+    String type_location;
 
-    public Doctors(String name, String email, String type, String profileimg, String about, String qualifications, String workplace, String location, String gender, String yoe,String mobile,String age) {
+    public Doctors(String name, String email, String type, String profileimg, String about, String qualifications, String workplace, String location, String gender, String yoe,String mobile,String age,String type_location) {
         this.name = name;
         this.email = email;
         this.type = type;
@@ -30,6 +31,15 @@ public class Doctors {
         this.yoe = yoe;
         this.mobile=mobile;
         this.age=age;
+        this.type_location=type_location;
+    }
+
+    public String getType_location() {
+        return type_location;
+    }
+
+    public void setType_location(String type_location) {
+        this.type_location = type_location;
     }
 
     public String getAge() {

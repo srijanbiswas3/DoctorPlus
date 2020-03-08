@@ -131,7 +131,8 @@ public class HomeActivity extends AppCompatActivity {
                                 Toast.makeText(HomeActivity.this, "clicked History", Toast.LENGTH_LONG).show();
                                 break;
                             case R.id.events:
-                                Toast.makeText(HomeActivity.this, "clicked Events", Toast.LENGTH_LONG).show();
+                                Intent intent2 = new Intent(HomeActivity.this,ViewEvents.class);
+                                startActivity(intent2);
                                 break;
                         }
                         return false;
@@ -140,7 +141,7 @@ public class HomeActivity extends AppCompatActivity {
         );
 
         String[] loca = {"Location", "Ghaziabad", "Agra", "Firozabad", "Gazipur", "Meerut", "Hapur", "Mirzapur", "Varanasi", "Sitapur", "Etawah"};
-        String[] type = {"Type", "ENT Specialist", "Orthopadist", "gynaecologist", "Dermatologists", "Allergist", "Cardiologist", "Gastroenterologist", "General Physician"};
+        String[] type = {"Type", "ENT Specialist", "Orthopedist", "gynaecologist", "Dermatologists", "Allergist", "Cardiologist", "Gastroenterologist", "General Physician"};
         List<String> loc = new ArrayList<String>();
         loc.addAll(Arrays.asList(loca));
         List<String> typep = new ArrayList<>();
@@ -221,15 +222,32 @@ public class HomeActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Query query = FirebaseDatabase.getInstance().getReference("Doctors")
-                        .orderByChild("type")
-                        .equalTo(spinner2item);
+
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 if (location.getSelectedItemPosition() == 0 && ptype.getSelectedItemPosition() == 0) {
                     filter.setText("Showing Result for: ALL");
                     databaseReference.addListenerForSingleValueEvent(valueEventListener);
-                } else {
+                } else if(location.getSelectedItemPosition() == 0) {
+                    Query query = FirebaseDatabase.getInstance().getReference("Doctors")
+                            .orderByChild("type")
+                            .equalTo(spinner2item);
+                    filter.setText("Showing Result for: "+ spinner2item);
+                    query.addListenerForSingleValueEvent(valueEventListener);
+                }
+                else if(ptype.getSelectedItemPosition() == 0) {
+                    Query query = FirebaseDatabase.getInstance().getReference("Doctors")
+                            .orderByChild("location")
+                            .equalTo(spinner1item);
+                    filter.setText("Showing Result for: " + spinner1item);
+                    query.addListenerForSingleValueEvent(valueEventListener);
+                }
+                else {
+
                     filter.setText("Showing Result for: " + spinner2item + " in " + spinner1item);
+
+                    Query query = FirebaseDatabase.getInstance().getReference("Doctors")
+                            .orderByChild("type_location")
+                            .equalTo(spinner2item+"_"+spinner1item);
                     query.addListenerForSingleValueEvent(valueEventListener);
                 }
 
@@ -275,6 +293,7 @@ public class HomeActivity extends AppCompatActivity {
 
             } else {
                 Toast.makeText(getApplicationContext(), "data not found", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
         }

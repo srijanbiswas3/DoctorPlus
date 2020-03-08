@@ -16,10 +16,9 @@
         android:title="Appointment History"
         android:icon="@drawable/apphistory"
         />
-    <item
-        android:id="@+id/events"
-        android:title="Events "
-        android:icon="@drawable/alert"
-        />
+        <item
+            android:id="@+id/events"
+            android:icon="@drawable/alert"
+            android:title="HeathCare" />
     </group>
 </menu>

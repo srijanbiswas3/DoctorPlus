@@ -25,8 +25,8 @@ import java.util.List;
 public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder> {
     private Context mCtx;
     private List<Appointment> appointmentList;
-    Doctors doc ;
-    String docemail, doctype, docabout, docquali, docwork,location;
+    Doctors doc;
+    String docemail, doctype, docabout, docquali, docwork, location;
     ImageView docprofile;
     DatabaseReference docref = FirebaseDatabase.getInstance().getReference().child("Doctors");
     Appointment app;
@@ -66,7 +66,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
                         docabout = ds.child("about").getValue().toString();
                         docquali = ds.child("qualifications").getValue().toString();
                         docwork = ds.child("workplace").getValue().toString();
-                        location=ds.child("location").getValue().toString();
+                        location = ds.child("location").getValue().toString();
 
 
                         if (app.getStatus().equals("Requested")) {

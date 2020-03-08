@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/botsheetpres"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/botsheet_background"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:layout_margin="10dp"
+    app:behavior_peekHeight="0dp"
+    android:elevation="10dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+    <View
+        android:layout_width="40dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/view"
+        />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="Upload a Prescription"
+        android:fontFamily="@font/muli_bold"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/view"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
+   <ImageView
+       android:layout_width="200dp"
+       android:layout_height="200dp"
+       android:layout_gravity="center_horizontal"
+       android:src="@drawable/image"
+       android:id="@+id/prescription"
+       android:layout_margin="10dp"/>
+
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textAllCaps="false"
+        android:elevation="4dp"
+        android:translationZ="2dp"
+        android:textSize="17sp"
+        android:stateListAnimator="@null"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_background"
+        android:text="Upload and Proceed to Payment"
+        android:id="@+id/uploadproceed"
+        android:textColor="@android:color/white" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:textAllCaps="false"
+        android:elevation="2dp"
+        android:translationZ="2dp"
+        android:textSize="15sp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:stateListAnimator="@null"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/view"
+        android:text="Skip and Proceed to Payment"
+        android:id="@+id/skipproceed"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>

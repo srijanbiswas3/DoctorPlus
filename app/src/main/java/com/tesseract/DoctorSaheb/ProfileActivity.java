@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -66,7 +68,6 @@ public class ProfileActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
                         if (data.child("mobile").getValue().toString().equals(mobile)) {
-                            //Toast.makeText(getApplicationContext(), "Logging In", Toast.LENGTH_SHORT).show();
 
                             String nam = data.child("name").getValue().toString();
                             String em = data.child("email").getValue().toString();
@@ -77,14 +78,13 @@ public class ProfileActivity extends AppCompatActivity {
                             name.setText(nam);
                             password.setText(pass);
                             if (g == 0) {
+                                Toast.makeText(getApplicationContext(), "Logged In", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
                                 intent.putExtra("name", nam);
                                 startActivity(intent);
                                 finish();
                             }
 
-
-                        } else {
 
                         }
                     }
@@ -197,41 +197,36 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
             private boolean validate(String Email, String Password, String Mobile, String Name, String Gender) {
-                if (Email.isEmpty()) {
-                    email.setError("Enter Email");
-                    email.requestFocus();
+                boolean lol=true;
+                if (TextUtils.isEmpty(Email) || !Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
+                    email.setError("Enter correct Email");
+                    lol=false;
 
 
                 }
-                if (Password.isEmpty()) {
+                else if (Password.isEmpty()) {
                     name.setError("Enter password");
-                    if (!Email.isEmpty())
-                        password.requestFocus();
+                    lol=false;
 
                 }
-                if (Mobile.isEmpty()) {
+                else if (Mobile.isEmpty()) {
 
                     phnumber.setError("Enter name");
-                    if (!Password.isEmpty())
-                        phnumber.requestFocus();
+                    lol=false;
 
                 }
-                if (Name.isEmpty()) {
+                else if (Name.isEmpty() || Name.matches(".*\\d.*")) {
                     name.setError("Enter name");
-                    if (!Mobile.isEmpty())
-                        name.requestFocus();
-
+                    lol=false;
                 }
-                if (Gender.equals("")) {
+                else if (Gender.equals("")) {
                     gendertxt.setError("Select your Gender");
-                    if (!Name.isEmpty())
-                        gendertxt.requestFocus();
-
+                    lol=false;
                 }
-                if (!Email.isEmpty() && !Mobile.isEmpty() && !Password.isEmpty() && !Name.isEmpty() && !Gender.equals("")) {
-                    return true;
+               else{
+                    lol=true;
                 }
-                return false;
+                return lol;
             }
         });
 

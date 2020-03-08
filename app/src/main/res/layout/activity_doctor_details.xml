@@ -25,12 +25,13 @@
         <TextView
             android:id="@+id/canceltxt"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="-100dp"
             android:layout_marginTop="1dp"
             android:layout_toLeftOf="@+id/cancel"
             android:elevation="3dp"
             android:textStyle="italic"
+            android:textSize="10dp"
             android:fontFamily="@font/muli_bold"
             android:gravity="center"
             android:text="Cancel\n Appointment"
@@ -392,9 +393,29 @@
             android:layout_marginBottom="20dp"
             android:textSize="15dp"
             android:textStyle="italic" />
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/time"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:textColor="@color/background"
+            android:fontFamily="@font/muli"
+            android:paddingRight="5dp"
+            android:stateListAnimator="@null"
+            android:layout_marginLeft="20dp"
+            android:drawableLeft="@drawable/call2"
+            android:text="996468469"
+            android:background="@drawable/edittext_background"
+            android:elevation="2dp"
+            android:textSize="15dp"
+            android:visibility="gone"
+            android:textStyle="italic" />
     </RelativeLayout>
 
     <include layout="@layout/bottom_sheet_pay" />
+    <include layout="@layout/bottom_sheet_prescription"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

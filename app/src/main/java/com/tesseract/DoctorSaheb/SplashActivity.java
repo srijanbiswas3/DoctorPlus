@@ -14,7 +14,7 @@ import android.widget.ImageView;
 public class SplashActivity extends AppCompatActivity {
 ImageView roll,tape,logo,name,shadow;
 Animation rightmove,fadein,lefttoright;
-    private final int SPLASH_DISPLAY_TIMER = 3000;
+    private final int SPLASH_DISPLAY_TIMER = 2000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

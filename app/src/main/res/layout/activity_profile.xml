@@ -109,6 +109,7 @@
                     android:padding="8dp"
                     android:background="@drawable/edittext_background"
                     android:layout_margin="20dp"
+                    android:inputType="textPersonName|textCapWords"
                     android:fontFamily="@font/muli"
                     android:hint="Full Name" />
             </com.google.android.material.textfield.TextInputLayout>
