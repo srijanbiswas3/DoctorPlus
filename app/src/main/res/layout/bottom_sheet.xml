@@ -4,105 +4,128 @@
     android:id="@+id/botsheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     android:background="@drawable/botsheet_background"
+    android:elevation="8dp"
     android:orientation="vertical"
     android:padding="15dp"
-    android:layout_margin="10dp"
     app:behavior_peekHeight="50dp"
-    android:elevation="10dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
     <View
         android:layout_width="40dp"
         android:layout_height="5dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="20dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/view"
-        />
+        android:background="@drawable/view" />
 
 
 
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="30dp"
-    android:text="Clear filters"
-    android:background="@drawable/edittext_background"
-    android:textColor="@color/background"
-    android:textAllCaps="false"
-    android:padding="5dp"
-    android:fontFamily="@font/muli"
-    android:stateListAnimator="@null"
-    android:id="@+id/clear"
 
-    android:elevation="4dp"
-    android:translationZ="3dp"
-    android:textStyle="italic"
-    android:layout_margin="20dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/muli_bold"
         android:text="Choose location"
-        android:fontFamily="@font/muli_bold"
-        android:textStyle="italic"
-        android:textColor="@color/colorAccent"
+
+        android:textColor="@android:color/white"
         android:textSize="20sp" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@drawable/view"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        />
-
-    <Spinner
-        android:id="@+id/location"
+        android:background="@drawable/view" />
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_margin="20dp"
-        android:spinnerMode="dialog"
-        android:elevation="10dp"
-        android:popupBackground="@drawable/botsheet_background"/>
+        android:background="@drawable/edittext_background">
+        <Spinner
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:elevation="4dp"
+            android:paddingBottom="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:popupElevation="4dp"
+            android:backgroundTint="@color/background"
+            android:spinnerMode="dialog" />
+    </FrameLayout>
+
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="Choose Department"
-        android:textColor="@color/colorAccent"
         android:fontFamily="@font/muli_bold"
-        android:textSize="20sp"
-        android:textStyle="italic"/>
+        android:text="Choose Department"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@drawable/view"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        />
+        android:background="@drawable/view" />
 
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/edittext_background">
     <Spinner
         android:id="@+id/ptype"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:paddingBottom="2dp"
+        android:popupBackground="@color/background"
+        android:backgroundTint="@color/background"
         android:spinnerMode="dialog" />
+    </FrameLayout>
+    <Button
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edittext_background"
+        android:elevation="4dp"
+        android:fontFamily="@font/muli"
+        android:paddingTop="-2dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:stateListAnimator="@null"
+        android:text="Clear filters"
+        android:textAllCaps="false"
+        android:textColor="@color/background"
+
+        android:translationZ="3dp" />
 
     <Button
+        android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textAllCaps="false"
-        android:elevation="2dp"
-        android:translationZ="2dp"
-        android:textSize="20sp"
-        android:stateListAnimator="@null"
         android:layout_marginBottom="20dp"
         android:background="@drawable/btn_background"
+        android:elevation="2dp"
+        android:stateListAnimator="@null"
         android:text="Search"
-        android:id="@+id/search"
-        android:textColor="@android:color/white" />
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:translationZ="2dp" />
 
 </LinearLayout>

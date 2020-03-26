@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/draw"
-    android:background="@android:color/white"
+    android:background="@color/botsheet"
     tools:context="com.tesseract.DoctorSaheb.HomeActivity">
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -32,28 +32,36 @@
         <TextView
             android:id="@+id/welcome"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/muli"
+            android:paddingRight="20dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/toolbar"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="3dp"
-            android:textColor="@android:color/black"
+            android:layout_height="80dp"
+            android:text="Welcome!"
+            android:fontFamily="@font/muli"
+            android:gravity="bottom"
+            android:paddingBottom="5dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/status_color_blue"
 
-            android:textSize="20sp" />
+            android:textColor="@android:color/white"
+
+            android:textSize="17sp" />
         <TextView
             android:id="@+id/filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/muli"
-            android:text=""
-            android:textStyle="italic"
+            android:text="connecting . . ."
+            android:layout_centerHorizontal="true"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/status_color_blue"
             android:layout_below="@+id/welcome"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="3dp"
-            android:textColor="@color/cardview_dark_background"
+            android:textColor="@android:color/white"
 
-            android:textSize="15sp" />
+            android:textSize="12sp" />
 
         <ProgressBar
             android:layout_width="100dp"
@@ -93,7 +101,7 @@
             android:layout_marginLeft="-55dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/muli_bold"
-            android:textStyle="italic"
+           android:textSize="13sp"
             android:elevation="4dp"
             android:translationZ="2dp"
             android:stateListAnimator="@null"
@@ -102,8 +110,8 @@
 
         <Button
             android:id="@+id/logout"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:fontFamily="@font/muli"
             android:layout_alignParentEnd="true"
             android:textAllCaps="false"

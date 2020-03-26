@@ -17,8 +17,9 @@ public class Doctors {
     String mobile;
     String age;
     String type_location;
+    float rating;
 
-    public Doctors(String name, String email, String type, String profileimg, String about, String qualifications, String workplace, String location, String gender, String yoe,String mobile,String age,String type_location) {
+    public Doctors(String name, String email, String type, String profileimg, String about, String qualifications, String workplace, String location, String gender, String yoe,String mobile,String age,String type_location,float rating) {
         this.name = name;
         this.email = email;
         this.type = type;
@@ -32,6 +33,15 @@ public class Doctors {
         this.mobile=mobile;
         this.age=age;
         this.type_location=type_location;
+        this.rating=rating;
+    }
+
+    public Float getRating() {
+        return rating;
+    }
+
+    public void setRating(Float rating) {
+        this.rating = rating;
     }
 
     public String getType_location() {

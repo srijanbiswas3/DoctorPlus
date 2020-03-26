@@ -1,5 +1,6 @@
 package com.tesseract.DoctorSaheb;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,7 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ViewAppointment extends AppCompatActivity {
@@ -29,6 +33,7 @@ public class ViewAppointment extends AppCompatActivity {
     TextView dataloadingtxt,uname;
     ProgressBar progressBar;
     DatabaseReference apref;
+    int hflag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,9 @@ public class ViewAppointment extends AppCompatActivity {
         dataloadingtxt = findViewById(R.id.dataloadingtxt);
         progressBar = findViewById(R.id.progress);
         uname = findViewById(R.id.uname);
+
+        hflag=getIntent().getIntExtra("hflag",hflag);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -55,11 +63,94 @@ public class ViewAppointment extends AppCompatActivity {
 
         String name=getIntent().getStringExtra("name");
         Query query=apref.orderByChild("username").equalTo(name);
-        query.addListenerForSingleValueEvent(valueEventListener);
+        if(hflag==0) {
+            query.addListenerForSingleValueEvent(valueEventListener);
+        }
+        else if(hflag==1)
+        {
+            apref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists())
+                    {Calendar now = Calendar.getInstance();
+                        int year = now.get(Calendar.YEAR);
+                        int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
+                        int day = now.get(Calendar.DAY_OF_MONTH);
+                        String curdate=year+""+month+""+day;
+                        long cur=Long.parseLong(curdate);
+
+
+                        for (DataSnapshot ds:dataSnapshot.getChildren())
+                        {
+                            if(ds.child("username").getValue().toString().equals(name) && cur>ScheduledDate(ds.child("time").getValue().toString()) )
+                            {
+                                Appointment appointment = ds.getValue(Appointment.class);
+                                appointment.setStatus("Completed");
+                                appointmentList.add(appointment);
+
+                            }
+
+
+                        }
+                        adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                        dataloadingtxt.setVisibility(View.GONE);
+                    }else {
+                        Toast.makeText(getApplicationContext(), "data not found", Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
+                        dataloadingtxt.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
 
         uname.setText("Appointments For: "+name);
 
     }
+
+    private long ScheduledDate(String time) {
+        int scheduledate=0;
+        int f=0,l=time.length();
+        String da="",res="";
+        for(int i=time.length()-1;i>=0;i--)
+        {
+            if(time.charAt(i)==',')
+            {
+                l=i;
+            }
+            if(time.charAt(i)=='y')
+            {
+                f=i;
+                break;
+            }
+
+
+        }
+        da=time.substring(f+1,l);
+        int m=da.length();
+        for(int i=da.length()-1;i>=0;i--)
+        {
+            if(da.charAt(i)=='/')
+            {
+                for(int j=i+1;j<m;j++) {
+                    res = res + da.charAt(j);
+                }
+                m=i;
+            }
+        }
+        for(int i=1;i<m;i++)
+        {
+            res = res + da.charAt(i);
+        }
+
+        return Long.parseLong(res);
+    }
+
     ValueEventListener valueEventListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {

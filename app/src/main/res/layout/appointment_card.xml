@@ -7,39 +7,47 @@
     android:layout_marginBottom="12dp"
     android:orientation="vertical"
     app:cardBackgroundColor="@android:color/white"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="5dp"
     app:cardElevation="5dp">
 
     <RelativeLayout
         android:id="@+id/card"
+        android:elevation="2dp"
+        android:translationZ="2dp"
         android:layout_width="match_parent"
-        android:layout_height="220dp">
+        android:layout_height="250dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="175dp"
+            android:layout_height="205dp"
             android:background="@drawable/edittext_background"
             android:elevation="6dp"
             android:translationZ="2dp">
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:id="@+id/slb"
+                android:background="@drawable/imageback"
+                android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/slno"
-                android:layout_width="60dp"
-                android:layout_height="120dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:gravity="center"
                 android:padding="5dp"
 
                 android:text="1"
-                android:textColor="@color/background"
+                android:textColor="@android:color/white"
                 android:textSize="80sp" />
+            </FrameLayout>
 
             <de.hdodenhof.circleimageview.CircleImageView
 
                 android:id="@+id/docimg"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginLeft="70dp"
+                android:layout_marginLeft="85dp"
                 android:layout_marginTop="15dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_profile"
@@ -84,14 +92,22 @@
                 android:hint="Email- ..........."
                 android:textColor="@color/colorAccent"
                 android:textSize="13sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/background"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="30dp"
+                android:layout_below="@id/docemail"/>
 
             <TextView
                 android:id="@+id/workplace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/docemail"
-                android:layout_marginLeft="80dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginLeft="85dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/muli"
                 android:hint="Workplace"
                 android:textColor="@color/background"
@@ -102,42 +118,46 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/workplace"
-                android:layout_marginLeft="80dp"
+                android:layout_marginLeft="85dp"
                 android:fontFamily="@font/muli"
                 android:text="Location"
                 android:textColor="@color/background"
                 android:textSize="15sp" />
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_toRightOf="@id/slb"
 
+    android:background="@drawable/imagebackr"
+    >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/location"
-                android:layout_marginLeft="80dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="2dp"
+                android:layout_gravity="start|bottom"
                 android:fontFamily="@font/muli"
                 android:text="Appointment\nSceduled on: "
-                android:textColor="@color/cardview_dark_background"
+                android:textColor="@android:color/white"
                 android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/edittext_background"
-                android:elevation="2dp"
+                android:layout_gravity="end|bottom"
+                android:layout_marginRight="10dp"
                 android:fontFamily="@font/muli"
-                android:paddingLeft="4dp"
-                android:paddingTop="2dp"
-                android:paddingRight="4dp"
-                android:paddingBottom="2dp"
+
+
+
                 android:text="time"
-                android:textColor="@color/background"
+                android:textColor="@android:color/white"
                 android:textSize="15sp"
-                android:translationZ="2dp" />
+              />
+</FrameLayout>
         </RelativeLayout>
 
         <TextView
@@ -149,7 +169,7 @@
             android:background="@drawable/view"
             android:fontFamily="@font/muli_bold"
             android:gravity="bottom"
-            android:paddingLeft="20dp"
+            android:paddingLeft="10dp"
 
             android:paddingBottom="8dp"
             android:text="Status :"

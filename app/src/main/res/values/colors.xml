@@ -4,9 +4,9 @@
     <color name="colorPrimaryDark">#3949AB</color>
     <color name="colorAccent">#7fbcf5</color>
     <color name="background">#3949AB</color>
-    <color name="background2">#2962FF</color>
+    <color name="background2">#E52962FF</color>
     <!--<color name="background">#003CFF</color>-->
-    <color name="botsheet">#EDF3FE</color>
+    <color name="botsheet">#F7F9FF</color>
     <color name="lightgrey">#DADADA</color>
 
 </resources>

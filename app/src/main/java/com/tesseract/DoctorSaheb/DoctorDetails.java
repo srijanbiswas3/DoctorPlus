@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,7 +54,7 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
     Button map, appointbtn, cancel, pay, chtime, uploadproceed, skipproceed;
 
 
-    LinearLayout linear, botsheetpay, botsheetpres;
+    LinearLayout botsheetpay, botsheetpres;
     DatabaseReference userref, docref, appref,pres;
     Doctors doc, doc2;
     String mobile, tim;
@@ -62,16 +63,14 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
     Appointment appointment;
     DataSnapshot ds2;
     BottomSheetBehavior bottomSheetBehavior, bottomSheetBehavior2;
-    RadioGroup rg;
-    RadioButton rb;
-    //String[] names = {"Monday         8:30AM", "Monday         7:30PM", "Wednesday  10:30AM", "Wednesday    6:30PM", "Thursday         7:00AM", "Thursday         9:30AM", "Friday              7:00AM", "Friday              6:30PM"};
     int flag = 0;
     String name, type, about, qualification, workplace, img, email, dateapp, timeapp;
     private static final int PICK_IMAGE_REQUEST = 1888;
     private Uri mImageUri;
-    private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private StorageReference mStorageRef;
     Prescription prescrip;
+    RatingBar ratingBar;
+   float rate= (float) 4.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +99,7 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
         uploadproceed = findViewById(R.id.uploadproceed);
         skipproceed = findViewById(R.id.skipproceed);
         prescription = findViewById(R.id.prescription);
+        ratingBar=findViewById(R.id.rating);
 
         bottomSheetBehavior = BottomSheetBehavior.from(botsheetpay);
         bottomSheetBehavior2 = BottomSheetBehavior.from(botsheetpres);
@@ -125,6 +125,7 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
         userref = FirebaseDatabase.getInstance().getReference().child("Member").child("" + auth.getUid());
         name = getIntent().getStringExtra("name");
         email = getIntent().getStringExtra("email");
+        rate= getIntent().getFloatExtra("rate",rate);
         type = getIntent().getStringExtra("type");
         about = getIntent().getStringExtra("about");
         qualification = getIntent().getStringExtra("qualification");
@@ -134,6 +135,7 @@ public class DoctorDetails extends AppCompatActivity implements DatePickerDialog
         Picasso.get().load(doc.getProfileimg()).into(docimg);
         docname.setText(name);
         docemail.setText(email);
+        ratingBar.setRating(rate);
         doctype.setText(type);
         docabout.setText(about);
         docqualification.setText(qualification);
@@ -292,6 +294,7 @@ phone.setOnClickListener(new View.OnClickListener() {
                 cancel.setVisibility(View.GONE);
                 chtime.setVisibility(View.GONE);
                 time.setText("");
+                phone.setVisibility(View.GONE);
 
             }
         });
@@ -437,6 +440,8 @@ phone.setOnClickListener(new View.OnClickListener() {
                 false
         );
         tpd.setAccentColor(getResources().getColor(R.color.background));
+        tpd.setMinTime(6,0,0);
+        tpd.setMaxTime(21,0,0);
         tpd.show(getSupportFragmentManager(), "Choose Time");
     }
 
@@ -453,11 +458,21 @@ phone.setOnClickListener(new View.OnClickListener() {
 
     @Override
     public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
-        String hourString = hourOfDay < 10 ? "0" + hourOfDay : "" + hourOfDay;
-        String minuteString = minute < 10 ? "0" + minute : "" + minute;
-        timeapp = hourString + ":" + minuteString;
+        Calendar datetime = Calendar.getInstance();
+        Calendar c = Calendar.getInstance();
+        datetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        datetime.set(Calendar.MINUTE, minute);
+        datetime.set(Calendar.SECOND, second);
+      /*  if(datetime.getTimeInMillis() < c.getTimeInMillis()){
+            Toast.makeText(getApplicationContext(),"Selected Time already Passed",Toast.LENGTH_SHORT).show();
+        }
+        else {*/
+            String hourString = hourOfDay < 10 ? "0" + hourOfDay : "" + hourOfDay;
+            String minuteString = minute < 10 ? "0" + minute : "" + minute;
+            timeapp = hourString + ":" + minuteString;
 
-        bottomSheetBehavior2.setState(BottomSheetBehavior.STATE_EXPANDED);
+            bottomSheetBehavior2.setState(BottomSheetBehavior.STATE_EXPANDED);
+     //   }
 
     }
 }

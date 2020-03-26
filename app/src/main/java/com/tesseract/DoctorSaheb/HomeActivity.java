@@ -122,18 +122,27 @@ public class HomeActivity extends AppCompatActivity {
                                 intent.putExtra("name", nam);
                                 startActivity(intent);
                                 break;
+
+                            case R.id.apphistory:
+                                Intent intent2 = new Intent(HomeActivity.this, ViewAppointment.class);
+                                intent2.putExtra("name", nam);
+                                intent2.putExtra("hflag",1);
+                                startActivity(intent2);
+                                break;
                             case R.id.edprofile:
                                 Intent intent1 = new Intent(HomeActivity.this, ProfileActivity.class);
                                 intent1.putExtra("flag", 1);
                                 startActivity(intent1);
                                 break;
-                            case R.id.apphistory:
-                                Toast.makeText(HomeActivity.this, "clicked History", Toast.LENGTH_LONG).show();
-                                break;
                             case R.id.events:
-                                Intent intent2 = new Intent(HomeActivity.this,ViewEvents.class);
-                                startActivity(intent2);
+                                Intent intent3 = new Intent(HomeActivity.this,ViewEvents.class);
+                                startActivity(intent3);
                                 break;
+                            case R.id.reco:
+                                Intent intent4 = new Intent(HomeActivity.this,Recommend.class);
+                                startActivity(intent4);
+                                break;
+
                         }
                         return false;
                     }
@@ -152,6 +161,7 @@ public class HomeActivity extends AppCompatActivity {
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, loc);
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+
         location.setAdapter(arrayAdapter);
         location.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

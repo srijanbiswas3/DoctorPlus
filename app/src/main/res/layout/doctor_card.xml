@@ -3,82 +3,137 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
+    android:layout_marginBottom="-2dp"
     android:orientation="vertical"
-    app:cardCornerRadius="8dp"
-    android:layout_margin="5dp"
-    app:cardBackgroundColor="@android:color/white"
-    app:cardElevation="5dp">
+    app:cardCornerRadius="5dp"
+    android:background="@color/botsheet"
+    app:cardElevation="0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="130dp"
+        android:background="@color/botsheet"
         android:id="@+id/card">
-
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:id="@+id/docimg2"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:elevation="6dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/imageback2"
+    android:layout_height="match_parent">
         <de.hdodenhof.circleimageview.CircleImageView
 
+            android:elevation="5dp"
             android:id="@+id/docimg"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
             android:layout_margin="10dp"
             android:scaleType="centerCrop"
-            android:layout_centerVertical="true"
             android:src="@drawable/ic_profile"
             app:civ_border_width="2dp"
             app:civ_border_color="@android:color/white"
             />
+</FrameLayout>
 
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:layout_marginLeft="60dp"
+    android:layout_marginTop="10dp"
+    android:paddingLeft="50dp"
+    android:layout_marginBottom="10dp"
+    android:elevation="5dp"
+    android:layout_marginRight="40dp">
         <TextView
             android:id="@+id/docname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/docimg"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/docimg"
+            android:layout_alignTop="@+id/docimg2"
+            android:layout_toRightOf="@+id/docimg2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:hint="Dr. ..........."
             android:textColor="#3949AB"
             android:textSize="20sp" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:paddingLeft="-10dp"
+        android:background="@color/background"
+        android:layout_marginTop="40dp"
+        />
         <TextView
             android:id="@+id/doctype"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/docimg"
-            android:layout_marginTop="35dp"
-            android:layout_toRightOf="@+id/docimg"
+            android:layout_alignTop="@+id/docimg2"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/docimg2"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:elevation="2dp"
             android:hint="Type- ....."
-            android:textColor="@color/cardview_dark_background"
+            android:background="@drawable/toolbar_background"
+            android:textColor="@android:color/white"
             android:textSize="15sp" />
+
 
         <TextView
             android:id="@+id/docemail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/docimg"
-            android:layout_marginTop="55dp"
-            android:layout_toRightOf="@+id/docimg"
+            android:layout_alignTop="@+id/docimg2"
+            android:layout_marginTop="62dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/docimg2"
             android:hint="Email- ..........."
             android:textColor="@color/colorAccent"
             android:textSize="13sp" />
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/rating"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="10dp"
+        android:isIndicator="true"
+        android:rating="3.5"
+        android:progressTint="@android:color/holo_orange_light"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        />
 
 
-        <View
-            android:layout_width="60dp"
+
+</FrameLayout>
+
+       <!-- <View
+            android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:background="@drawable/arrow"
+            android:background="@drawable/imagebackr"
+            android:stateListAnimator="@null"
+            android:layout_alignParentRight="true"/>-->
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="10dp"
+            android:paddingRight="-20dp"
             android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:adjustViewBounds="true"
             android:stateListAnimator="@null"
-            android:elevation="10dp"
+            android:translationZ="4dp"
+            android:elevation="4dp"
+            android:src="@drawable/triangle"
             android:layout_alignParentRight="true"/>
-        <View
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/arrow"
-            android:layout_marginRight="-7dp"
-            android:stateListAnimator="@null"
-            android:elevation="10dp"
-            android:layout_alignParentRight="true"/>
-
     </RelativeLayout>
 
 

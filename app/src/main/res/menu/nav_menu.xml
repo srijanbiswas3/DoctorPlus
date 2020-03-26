@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/viewapp"
-        android:title="My Appointments"
-        android:icon="@drawable/myappointment"
-        />
     <group>
+        <item
+            android:id="@+id/viewapp"
+            android:icon="@drawable/myappointment"
+            android:title="My Appointments" />
+        <item
+            android:id="@+id/apphistory"
+            android:icon="@drawable/apphistory"
+            android:title="Appointment History" />
+    </group>
+    <item
+        android:id="@+id/reco"
+        android:icon="@drawable/alert"
+        android:title="Recommendations" />
     <item
         android:id="@+id/edprofile"
-        android:title="Edit Profile"
         android:icon="@drawable/ic_profile"
-        />
+        android:title="Edit Profile" />
     <item
-        android:id="@+id/apphistory"
-        android:title="Appointment History"
-        android:icon="@drawable/apphistory"
-        />
-        <item
-            android:id="@+id/events"
-            android:icon="@drawable/alert"
-            android:title="HeathCare" />
-    </group>
+        android:id="@+id/events"
+        android:icon="@drawable/alert"
+        android:title="HeathCare" />
+
+
 </menu>

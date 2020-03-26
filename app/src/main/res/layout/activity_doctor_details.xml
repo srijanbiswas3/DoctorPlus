@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
+    android:backgroundTint="@color/botsheet"
     tools:context=".DoctorDetails">
 
     <RelativeLayout
@@ -30,12 +31,12 @@
             android:layout_marginTop="1dp"
             android:layout_toLeftOf="@+id/cancel"
             android:elevation="3dp"
-            android:textStyle="italic"
-            android:textSize="10dp"
             android:fontFamily="@font/muli_bold"
             android:gravity="center"
             android:text="Cancel\n Appointment"
             android:textColor="@android:color/white"
+            android:textSize="10dp"
+            android:textStyle="italic"
             android:translationZ="3dp" />
 
         <Button
@@ -46,54 +47,82 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/cancel"
+            android:backgroundTint="@android:color/white"
             android:elevation="3dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:stateListAnimator="@null"
             android:textColor="@android:color/white"
-            android:backgroundTint="@android:color/white"
             android:translationZ="3dp"
             android:visibility="gone" />
 
+        <View
+            android:id="@+id/view1"
+            android:layout_width="100dp"
+            android:layout_height="180dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/status_color_blue"
+            android:elevation="2dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="20dp"
+            android:elevation="2dp"
+            android:layout_toRightOf="@+id/view1"
+            android:background="@drawable/edittext_background" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/docimg"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:padding="2dp"
             android:layout_below="@+id/toolbar"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="17dp"
             android:layout_marginBottom="20dp"
-            app:civ_border_width="2dp"
+            android:elevation="6dp"
+            android:padding="2dp"
+            android:src="@drawable/ic_profile"
             app:civ_border_color="@android:color/white"
-            android:src="@drawable/ic_profile" />
+            app:civ_border_width="2dp" />
+
         <TextView
+            android:id="@+id/age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/docimg"
-            android:text="Age: "
+            android:layout_alignLeft="@+id/docimg"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="-12dp"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/muli"
-            android:textSize="15sp"
-            android:textColor="@color/background"
-            android:id="@+id/age"
-            android:layout_alignLeft="@+id/docimg"
-            android:layout_marginLeft="10dp"/>
+            android:text="Age: "
+            android:elevation="2dp"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/docnametxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/docimg"
-            android:layout_margin="5dp"
             android:layout_toRightOf="@+id/docimg"
             android:fontFamily="@font/muli"
             android:text="Dr........"
+            android:elevation="2dp"
             android:textColor="@color/background"
             android:textSize="25sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_below="@+id/docnametxt"
+            android:layout_marginLeft="120dp"
+            android:layout_marginRight="20dp"
+            android:elevation="2dp"
+            android:background="@drawable/toolbar_background" />
 
         <TextView
             android:id="@+id/doctypetxt"
@@ -103,8 +132,13 @@
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="5dp"
             android:layout_toRightOf="@+id/docimg"
+            android:background="@drawable/toolbar_background"
+            android:elevation="3dp"
             android:fontFamily="@font/muli"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="Type..."
+            android:textColor="@android:color/white"
             android:textSize="17sp" />
 
         <TextView
@@ -116,15 +150,29 @@
             android:layout_toRightOf="@+id/docimg"
             android:fontFamily="@font/muli"
             android:text="Email..."
+            android:elevation="2dp"
             android:textColor="@color/colorAccent"
             android:textSize="13sp" />
+
+        <RatingBar
+            android:id="@+id/rating"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/docemailtxt"
+            android:layout_marginTop="7dp"
+            android:layout_toRightOf="@+id/docimg"
+            android:isIndicator="true"
+            android:elevation="2dp"
+            android:progressTint="@android:color/holo_orange_light"
+            android:rating="3.5" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/docemailtxt"
+            android:layout_below="@+id/rating"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="100dp">
 
@@ -133,24 +181,28 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp">
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/toolbar_background" />
+
                 <TextView
                     android:id="@+id/about"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:fontFamily="@font/muli_bold"
-                    android:text="About"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp" />
+                    android:background="@drawable/toolbar_background"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/muli"
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_above="@+id/aboutscroll"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="3dp"
-                    android:background="@drawable/view" />
+                    android:text="About"
+
+                    android:textSize="17dp" />
+
+
 
                 <androidx.core.widget.NestedScrollView
                     android:id="@+id/aboutscroll"
@@ -169,33 +221,36 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/about"
                             android:layout_margin="5dp"
-                            android:background="@drawable/txtbackgroug"
+                            android:background="@drawable/edittext_background"
                             android:fontFamily="@font/muli"
-                            android:padding="5dp"
+                            android:padding="10dp"
                             android:text="This displays the details of doctor"
                             android:textColor="@color/background"
                             android:textSize="17sp" />
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginBottom="-6dp"
+                    android:layout_above="@+id/yoe"
+                    android:background="@color/background" />
                 <TextView
                     android:id="@+id/yoe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/aboutscroll"
                     android:layout_margin="5dp"
-                    android:fontFamily="@font/muli_bold"
+                    android:background="@drawable/toolbar_background"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/muli"
                     android:text="Years of Experience"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_above="@+id/yoetxt"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="2dp"
-                    android:background="@drawable/view" />
+                    android:textSize="17dp" />
+
+
 
                 <TextView
                     android:id="@+id/yoetxt"
@@ -203,12 +258,18 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/yoe"
                     android:layout_margin="5dp"
-                    android:background="@drawable/txtbackgroug"
+                    android:background="@drawable/edittext_background"
                     android:fontFamily="@font/muli"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:text="This displays the YOE"
                     android:textColor="@color/background"
                     android:textSize="17sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginBottom="-6dp"
+                    android:layout_above="@+id/qualification"
+                    android:background="@drawable/toolbar_background" />
 
                 <TextView
                     android:id="@+id/qualification"
@@ -216,19 +277,15 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/yoetxt"
                     android:layout_margin="5dp"
-                    android:fontFamily="@font/muli_bold"
+                    android:background="@drawable/toolbar_background"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/muli"
                     android:text="Qualifications"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp" />
+                    android:textSize="17dp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_above="@+id/qualificationtxt"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="2dp"
-                    android:background="@drawable/view" />
+
 
                 <TextView
                     android:id="@+id/qualificationtxt"
@@ -236,64 +293,68 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/qualification"
                     android:layout_margin="5dp"
-                    android:background="@drawable/txtbackgroug"
+                    android:background="@drawable/edittext_background"
                     android:fontFamily="@font/muli"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:text="This displays the Qualification of doctor"
                     android:textColor="@color/background"
                     android:textSize="17sp" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginBottom="-6dp"
+                    android:layout_above="@+id/workplace"
+                    android:background="@drawable/toolbar_background" />
                 <TextView
                     android:id="@+id/workplace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/qualificationtxt"
                     android:layout_margin="5dp"
-                    android:fontFamily="@font/muli_bold"
+                    android:fontFamily="@font/muli"
                     android:text="Work Place"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp" />
+                    android:background="@drawable/toolbar_background"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="17dp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_above="@+id/workplacetxt"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="2dp"
-                    android:background="@drawable/view" />
+
 
                 <TextView
                     android:id="@+id/workplacetxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/workplace"
-                    android:layout_margin="5dp"
-                    android:background="@drawable/txtbackgroug"
+                    android:background="@drawable/edittext_background"
                     android:fontFamily="@font/muli"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:text="This displays the Work Place of doctor"
                     android:textColor="@color/background"
                     android:textSize="17sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginBottom="-6dp"
+                    android:layout_above="@+id/location"
+                    android:background="@drawable/toolbar_background" />
                 <TextView
                     android:id="@+id/location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/workplacetxt"
                     android:layout_margin="5dp"
-                    android:fontFamily="@font/muli_bold"
+                    android:background="@drawable/toolbar_background"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/muli"
                     android:text="Location"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_above="@+id/locationtxt"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="2dp"
-                    android:background="@drawable/view" />
+                    android:textSize="17dp" />
+
+
 
                 <TextView
                     android:id="@+id/locationtxt"
@@ -301,9 +362,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/location"
                     android:layout_margin="5dp"
-                    android:background="@drawable/txtbackgroug"
+                    android:background="@drawable/edittext_background"
                     android:fontFamily="@font/muli"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:text="This displays the Location of doctor"
                     android:textColor="@color/background"
                     android:textSize="17sp" />
@@ -312,27 +373,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/locationtxt"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/muli"
                     android:text="See Location In Map"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/background"
                     android:textSize="17sp" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_above="@id/map"
+                    android:layout_marginBottom="-16dp"
+                    android:background="@drawable/toolbar_background" />
 
                 <Button
                     android:id="@+id/map"
                     android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:gravity="center"
+                    android:layout_height="35dp"
                     android:layout_below="@+id/locationtxt"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="31dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/btn_background"
+                    android:background="@drawable/toolbar_background"
+                    android:drawableEnd="@drawable/map2"
                     android:elevation="2dp"
                     android:fontFamily="@font/muli"
+                    android:gravity="center"
+                    android:paddingRight="5dp"
                     android:stateListAnimator="@null"
                     android:text="Map"
                     android:textAllCaps="false"
@@ -341,7 +410,14 @@
 
             </RelativeLayout>
         </androidx.core.widget.NestedScrollView>
-
+<View
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginLeft="10dp"
+    android:elevation="2dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/edittext_background"
+    android:layout_alignParentBottom="true"/>
         <Button
             android:id="@+id/appointbtn"
             android:layout_width="match_parent"
@@ -366,56 +442,66 @@
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:layout_alignTop="@+id/time"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="40dp"
             android:background="@drawable/edittext_background"
-            android:elevation="2dp"
+            android:elevation="4dp"
+            android:fontFamily="@font/muli"
             android:gravity="center"
             android:paddingLeft="5dp"
-            android:textColor="@color/background"
-            android:fontFamily="@font/muli"
+            android:layout_marginTop="6dp"
             android:paddingRight="5dp"
             android:stateListAnimator="@null"
             android:text="change date"
             android:textAllCaps="false"
+            android:textColor="@color/background"
             android:textSize="13dp"
             android:translationZ="2dp" />
 
         <TextView
             android:id="@+id/time"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="right"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/status_color_blue"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/white"
+            android:elevation="4dp"
             android:layout_marginTop="20dp"
-            android:text=""
             android:layout_marginRight="30dp"
             android:layout_marginBottom="20dp"
-            android:textSize="15dp"
-            android:textStyle="italic" />
+            android:text=""
+
+            android:textSize="15dp" />
+
         <TextView
             android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/time"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/edittext_background"
+            android:drawableLeft="@drawable/call2"
+            android:elevation="4dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/muli"
             android:gravity="center"
             android:paddingLeft="5dp"
-            android:textColor="@color/background"
-            android:fontFamily="@font/muli"
             android:paddingRight="5dp"
             android:stateListAnimator="@null"
-            android:layout_marginLeft="20dp"
-            android:drawableLeft="@drawable/call2"
             android:text="996468469"
-            android:background="@drawable/edittext_background"
-            android:elevation="2dp"
+            android:textColor="@color/background"
             android:textSize="15dp"
-            android:visibility="gone"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <include layout="@layout/bottom_sheet_pay" />
-    <include layout="@layout/bottom_sheet_prescription"/>
+
+    <include layout="@layout/bottom_sheet_prescription" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
