@@ -55,11 +55,17 @@
                 android:text="Please Be Patient while \n the Data is Loading!"
                 android:layout_below="@+id/progress"
                 android:gravity="center"
-                android:textStyle="italic"
                 android:textSize="15sp"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
                 />
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="250dp"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                android:id="@+id/datanf"
+                android:background="@drawable/doctorimage"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview"

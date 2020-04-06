@@ -17,8 +17,8 @@
 <FrameLayout
     android:layout_width="wrap_content"
     android:id="@+id/docimg2"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
+    android:layout_marginTop="7.5dp"
+    android:layout_marginBottom="7.5dp"
     android:elevation="6dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="10dp"
@@ -42,13 +42,13 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@drawable/edittext_background"
     android:layout_marginLeft="60dp"
     android:layout_marginTop="10dp"
     android:paddingLeft="50dp"
     android:layout_marginBottom="10dp"
     android:elevation="5dp"
-    android:layout_marginRight="40dp">
+    android:layout_marginRight="50dp">
         <TextView
             android:id="@+id/docname"
             android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:paddingLeft="-10dp"
-        android:background="@color/background"
+        android:background="@drawable/toolbar_background"
         android:layout_marginTop="40dp"
         />
         <TextView
@@ -114,14 +114,8 @@
 
 </FrameLayout>
 
-       <!-- <View
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/imagebackr"
-            android:stateListAnimator="@null"
-            android:layout_alignParentRight="true"/>-->
         <ImageView
-            android:layout_width="80dp"
+            android:layout_width="85dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:layout_marginTop="10dp"
@@ -131,7 +125,7 @@
             android:adjustViewBounds="true"
             android:stateListAnimator="@null"
             android:translationZ="4dp"
-            android:elevation="4dp"
+            android:elevation="0dp"
             android:src="@drawable/triangle"
             android:layout_alignParentRight="true"/>
     </RelativeLayout>

@@ -1,175 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical"
     tools:context=".Recommend">
 
     <Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/toolbar_background"
+        android:elevation="4dp"
         android:title="Recommendation"
         android:titleTextColor="@android:color/white" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginBottom="-80dp"
+        android:src="@drawable/body" />
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
         android:layout_margin="20dp"
-        android:background="@drawable/malebody"
         android:columnCount="3"
         android:rowCount="8">
 
         <Button
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:background="@drawable/circlebutton"
-
-           />
+            android:layout_columnWeight="1" />
 
         <Button
+            android:id="@+id/b1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-            android:textAllCaps="false"
-             />
+
+            android:gravity="top|center"
+            android:hint="head,\nneck"
+            android:paddingTop="30dp"
+            android:textAllCaps="false" />
 
         <Button
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/b2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
+            android:gravity="right"
+            android:hint="shoulder\narms"
+            android:paddingTop="20dp"
+            android:paddingRight="20dp"
 
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/b3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-
-            android:textAllCaps="false"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:background="@drawable/circlebutton"
+            android:hint="chest,\nheart"
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/b4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
+            android:gravity="left"
+            android:hint="shoulder\narms"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/b5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
+            android:hint="arm,hand"
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/b6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-            android:textAllCaps="false"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:background="@drawable/circlebutton"
+            android:hint="stomach,\nback"
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/b7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
+            android:hint="arm,hand"
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/b8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
+            android:hint="palm,fingers"
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/b9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
+            android:hint="abdomen"
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/b10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-            android:textAllCaps="false"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:background="@drawable/circlebutton"
+            android:hint="palm,fingers"
             android:textAllCaps="false" />
 
         <Button
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:background="@drawable/circlebutton"
+            android:background="@android:color/white"
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/b11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
+            android:hint="knee,legs"
             android:textAllCaps="false" />
 
         <Button
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
+
             android:layout_columnWeight="1"
-            android:background="@drawable/circlebutton"
             android:textAllCaps="false" />
 
         <Button
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:background="@android:color/white"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/b12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-            android:textAllCaps="false"/>
+            android:hint="foot,legs"
+            android:textAllCaps="false" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:textAllCaps="false">
+
+            <Button
+                android:id="@+id/next"
+                android:layout_width="match_parent"
+
+                android:layout_height="40dp"
+                android:layout_gravity="right|bottom"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/btn_background2"
+                android:elevation="4dp"
+                android:text="Next"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white" />
+        </FrameLayout>
 
 
     </GridLayout>
-</LinearLayout>
+</RelativeLayout>

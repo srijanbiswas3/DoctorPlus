@@ -452,7 +452,17 @@ phone.setOnClickListener(new View.OnClickListener() {
         SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
         Date date = new Date(year, monthOfYear, dayOfMonth - 1);
         String dayOfWeek = simpledateformat.format(date);
-        dateapp = dayOfWeek + "\n" + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+        String day=String.valueOf(dayOfMonth);
+        String month=String.valueOf(monthOfYear+1);
+        if(day.length()==1)
+        {
+            day="0"+day;
+        }
+        if(month.length()==1)
+        {
+            month="0"+month;
+        }
+        dateapp = dayOfWeek + "\n" + day + "/" + month + "/" + year;
         showTimePicker();
     }
 
@@ -463,16 +473,14 @@ phone.setOnClickListener(new View.OnClickListener() {
         datetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
         datetime.set(Calendar.MINUTE, minute);
         datetime.set(Calendar.SECOND, second);
-      /*  if(datetime.getTimeInMillis() < c.getTimeInMillis()){
-            Toast.makeText(getApplicationContext(),"Selected Time already Passed",Toast.LENGTH_SHORT).show();
-        }
-        else {*/
+
+
             String hourString = hourOfDay < 10 ? "0" + hourOfDay : "" + hourOfDay;
             String minuteString = minute < 10 ? "0" + minute : "" + minute;
             timeapp = hourString + ":" + minuteString;
 
             bottomSheetBehavior2.setState(BottomSheetBehavior.STATE_EXPANDED);
-     //   }
+
 
     }
 }

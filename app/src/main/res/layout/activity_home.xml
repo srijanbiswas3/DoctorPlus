@@ -2,142 +2,187 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/draw"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/draw"
     android:background="@color/botsheet"
     tools:context="com.tesseract.DoctorSaheb.HomeActivity">
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="50dp">
-
-        <Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:elevation="3dp"
-            android:translationZ="3dp"
-            android:stateListAnimator="@null"
-            android:background="@drawable/toolbar_background"
-            android:title="Doctor Plus"
-            android:titleTextColor="@android:color/white"/>
-
-
-        <TextView
-            android:id="@+id/welcome"
-            android:layout_width="wrap_content"
-            android:paddingRight="20dp"
-            android:layout_centerHorizontal="true"
-            android:layout_height="80dp"
-            android:text="Welcome!"
-            android:fontFamily="@font/muli"
-            android:gravity="bottom"
-            android:paddingBottom="5dp"
-            android:paddingLeft="20dp"
-            android:background="@drawable/status_color_blue"
-
-            android:textColor="@android:color/white"
-
-            android:textSize="17sp" />
-        <TextView
-            android:id="@+id/filter"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/muli"
-            android:text="connecting . . ."
-            android:layout_centerHorizontal="true"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
-            android:paddingBottom="5dp"
-            android:background="@drawable/status_color_blue"
-            android:layout_below="@+id/welcome"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="3dp"
-            android:textColor="@android:color/white"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            app:elevation="0dp">
 
-            android:textSize="12sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/toolbar_background"
+                    android:elevation="3dp"
+                    android:stateListAnimator="@null"
+                    android:title="Doctor Plus"
+                    android:titleTextColor="@android:color/white"
+                    android:translationZ="3dp" />
+
+                <TextView
+                    android:id="@+id/logouttext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/logout"
+                    android:layout_marginLeft="-55dp"
+                    android:layout_marginTop="15dp"
+                    android:elevation="4dp"
+                    android:fontFamily="@font/muli_bold"
+                    android:stateListAnimator="@null"
+                    android:text="Log out"
+                    android:textColor="@android:color/white"
+                    android:textSize="13sp"
+                    android:translationZ="2dp" />
+                <Button
+                    android:id="@+id/logout"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+
+                    android:background="@drawable/logout"
+                    android:elevation="4dp"
+                    android:fontFamily="@font/muli"
+                    android:stateListAnimator="@null"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:translationZ="2dp" />
+            </RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:background="@drawable/edittext_background2"
+    android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="-2dp"
+                android:background="@drawable/status_color_blue"
+                android:fontFamily="@font/muli"
+                android:gravity="bottom"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                android:text="Welcome!"
+
+                android:textColor="@android:color/white"
+
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/welcome"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/status_color_blue"
+                android:fontFamily="@font/muli"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:text="connecting . . ."
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+
+    <View
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/refresh"
+        android:background="@drawable/refresh"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="12dp"/>
+</RelativeLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+    <ImageView
+            android:id="@+id/datanf"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/doctorimage"
+            android:visibility="gone" />
 
         <ProgressBar
+            android:id="@+id/progress"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/progress"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="150dp"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp" />
+
         <TextView
+            android:id="@+id/dataloadingtxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/dataloadingtxt"
-            android:text="Please Be Patient while \n the Data is Loading!"
             android:layout_below="@+id/progress"
-            android:gravity="center"
-            android:textStyle="italic"
-            android:textSize="15sp"
-            android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
-            />
+
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Please Be Patient while \n the Data is Loading!"
+            android:textSize="15sp"
+            android:textStyle="italic" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/filter"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="40dp"
+            android:elevation="-1dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:layout_margin="5dp"
-            />
+            android:paddingBottom="5dp"
+          />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/logout"
-            android:layout_marginLeft="-55dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/muli_bold"
-           android:textSize="13sp"
-            android:elevation="4dp"
-            android:translationZ="2dp"
-            android:stateListAnimator="@null"
-            android:text="Log out"
-            android:textColor="@android:color/white" />
-
-        <Button
-            android:id="@+id/logout"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:fontFamily="@font/muli"
-            android:layout_alignParentEnd="true"
-            android:textAllCaps="false"
-            android:elevation="4dp"
-            android:translationZ="2dp"
-            android:stateListAnimator="@null"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="7dp"
-            android:background="@drawable/logout"
-            android:textColor="@android:color/white" />
-    </RelativeLayout>
-
-    <include layout="@layout/bottom_sheet" />
+</RelativeLayout>
+        <include layout="@layout/bottom_sheet" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav"
         android:layout_width="230dp"
         android:layout_height="match_parent"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu"
-        app:itemTextColor="@android:color/white"
-        app:itemIconTint="@android:color/white"
-        android:id="@+id/nav"
-        android:background="@color/background"
         android:layout_gravity="start"
-        >
-    </com.google.android.material.navigation.NavigationView>
+        android:background="@color/background"
+        app:headerLayout="@layout/nav_header"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        app:menu="@menu/nav_menu"></com.google.android.material.navigation.NavigationView>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

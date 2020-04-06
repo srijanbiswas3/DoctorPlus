@@ -6,9 +6,10 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:background="@drawable/botsheet_background"
-    android:elevation="8dp"
+    android:elevation="10dp"
     android:orientation="vertical"
-    android:padding="15dp"
+
+    android:clickable="true"
     app:behavior_peekHeight="50dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
@@ -16,35 +17,51 @@
         android:layout_width="40dp"
         android:layout_height="5dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/view" />
 
 
-
-
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="60dp"
+        android:paddingRight="30dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/muli_bold"
         android:text="Choose location"
-
         android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        android:textSize="17sp" />
+    <View
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginRight="60dp"
+        android:id="@+id/loca"
+        android:elevation="2dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/loc"
+        />
+</RelativeLayout>
+
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
         android:background="@drawable/view" />
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_margin="20dp"
-        android:background="@drawable/edittext_background">
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/edittext_background2">
         <Spinner
             android:id="@+id/location"
             android:layout_width="match_parent"
@@ -63,24 +80,27 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="60dp"
         android:fontFamily="@font/muli_bold"
         android:text="Choose Department"
         android:textColor="@android:color/white"
-        android:textSize="20sp" />
+        android:textSize="17sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
         android:background="@drawable/view" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_margin="20dp"
-        android:background="@drawable/edittext_background">
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/edittext_background2">
     <Spinner
         android:id="@+id/ptype"
         android:layout_width="match_parent"
@@ -96,36 +116,48 @@
         android:id="@+id/clear"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="60dp"
         android:gravity="center"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/edittext_background"
-        android:elevation="4dp"
+        android:background="@drawable/edittext_background2"
+        android:elevation="2dp"
         android:fontFamily="@font/muli"
         android:paddingTop="-2dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:stateListAnimator="@null"
         android:text="Clear filters"
         android:textAllCaps="false"
         android:textColor="@color/background"
 
         android:translationZ="3dp" />
-
-    <Button
-        android:id="@+id/search"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/btn_background"
+        android:layout_height="80dp"
         android:elevation="2dp"
-        android:stateListAnimator="@null"
-        android:text="Search"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:translationZ="2dp" />
+        android:layout_marginLeft="-10dp"
+        android:layout_marginRight="-10dp"
+        android:layout_marginBottom="-20dp"
+        android:background="@drawable/botstyle">
+        <Button
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_background"
+            android:elevation="2dp"
+            android:stateListAnimator="@null"
+            android:fontFamily="@font/muli"
+            android:text="Search"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            android:translationZ="2dp" />
+    </RelativeLayout>
+
+
 
 </LinearLayout>

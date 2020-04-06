@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group>
+    <group android:id="@+id/apppoint">
         <item
             android:id="@+id/viewapp"
             android:icon="@drawable/myappointment"
@@ -11,9 +11,14 @@
             android:title="Appointment History" />
     </group>
     <item
-        android:id="@+id/reco"
-        android:icon="@drawable/alert"
-        android:title="Recommendations" />
+        android:id="@+id/symptom"
+        android:icon="@drawable/bod"
+        android:title="Symptom Analyzer" />
+    <item
+        android:id="@+id/drugdic"
+        android:icon="@drawable/plus"
+        android:title="Drug Dictionary" />
+
     <item
         android:id="@+id/edprofile"
         android:icon="@drawable/ic_profile"
@@ -22,6 +27,5 @@
         android:id="@+id/events"
         android:icon="@drawable/alert"
         android:title="HeathCare" />
-
 
 </menu>

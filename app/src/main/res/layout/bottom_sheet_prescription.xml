@@ -30,7 +30,7 @@
         android:fontFamily="@font/muli_bold"
         android:gravity="center"
         android:textStyle="italic"
-        android:textColor="@color/colorAccent"
+        android:textColor="@android:color/white"
         android:textSize="20sp" />
     <View
         android:layout_width="match_parent"
@@ -78,7 +78,7 @@
         android:paddingRight="10dp"
         android:stateListAnimator="@null"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/view"
+        android:background="@drawable/btn_background2"
         android:text="Skip and Proceed to Payment"
         android:id="@+id/skipproceed"
         android:textColor="@android:color/white" />

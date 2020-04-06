@@ -20,7 +20,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="205dp"
-            android:background="@drawable/edittext_background"
+            android:background="@drawable/edittext_background2"
             android:elevation="6dp"
             android:translationZ="2dp">
             <FrameLayout
