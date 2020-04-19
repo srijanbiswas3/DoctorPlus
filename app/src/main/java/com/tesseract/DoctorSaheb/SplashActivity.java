@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 public class SplashActivity extends AppCompatActivity {
@@ -34,7 +35,6 @@ Animation rightmove,fadein,lefttoright;
         logo.setAnimation(fadein);
         name.setAnimation(fadein);
         shadow.setAnimation(fadein);
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

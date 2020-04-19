@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo2"
@@ -18,7 +17,8 @@
         android:roundIcon="@drawable/logo2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Recommend2"></activity>
+        <activity android:name=".Recommend3"></activity>
+        <activity android:name=".Recommend2" />
         <activity android:name=".Recommend" />
         <activity android:name=".WebView" />
         <activity android:name=".ViewAppointment" />
@@ -36,6 +36,8 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".VerifyPhoneActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".DrugListActivity" />
+        <activity android:name=".DrugDetailsActivity" />
     </application>
 
 </manifest>

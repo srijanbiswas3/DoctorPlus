@@ -4,9 +4,9 @@
         android:toAlpha="1"
         android:duration="1500"
         />
-    <scale android:fromXScale=".6"
+    <scale android:fromXScale=".7"
         android:toXScale="1"
-        android:fromYScale=".6"
+        android:fromYScale=".7"
         android:toYScale="1"
         android:pivotX="50%"
         android:pivotY="50%"

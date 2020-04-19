@@ -48,7 +48,7 @@
             android:background="@drawable/circlebutton"
 
             android:gravity="top|center"
-            android:hint="head,\nneck"
+            android:hint="Head,Neck"
             android:paddingTop="30dp"
             android:textAllCaps="false" />
 
@@ -68,7 +68,7 @@
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
             android:gravity="right"
-            android:hint="shoulder\narms"
+            android:hint="Shoulder,Arms"
             android:paddingTop="20dp"
             android:paddingRight="20dp"
 
@@ -81,7 +81,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-            android:hint="chest,\nheart"
+            android:hint="Chest,Heart"
             android:textAllCaps="false" />
 
         <Button
@@ -92,7 +92,7 @@
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
             android:gravity="left"
-            android:hint="shoulder\narms"
+            android:hint="Shoulder,Arms"
             android:paddingLeft="20dp"
             android:paddingTop="20dp"
             android:textAllCaps="false" />
@@ -104,7 +104,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-            android:hint="arm,hand"
+            android:hint="Arm,Hand"
             android:textAllCaps="false" />
 
         <Button
@@ -114,7 +114,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-            android:hint="stomach,\nback"
+            android:hint="Stomach,Back"
             android:textAllCaps="false" />
 
         <Button
@@ -124,7 +124,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-            android:hint="arm,hand"
+            android:hint="Arm,Hand"
             android:textAllCaps="false" />
 
         <Button
@@ -134,7 +134,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-            android:hint="palm,fingers"
+            android:hint="Palm,Fingers"
             android:textAllCaps="false" />
 
         <Button
@@ -144,7 +144,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-            android:hint="abdomen"
+            android:hint="Abdomen"
             android:textAllCaps="false" />
 
         <Button
@@ -154,7 +154,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-            android:hint="palm,fingers"
+            android:hint="Palm,Fingers"
             android:textAllCaps="false" />
 
         <Button
@@ -173,7 +173,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-            android:hint="knee,legs"
+            android:hint="Knee,Legs"
             android:textAllCaps="false" />
 
         <Button
@@ -201,7 +201,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:background="@drawable/circlebutton"
-            android:hint="foot,legs"
+            android:hint="Foot,Legs"
             android:textAllCaps="false" />
 
         <FrameLayout
@@ -215,9 +215,10 @@
                 android:id="@+id/next"
                 android:layout_width="match_parent"
 
-                android:layout_height="40dp"
+                android:layout_height="35dp"
                 android:layout_gravity="right|bottom"
-                android:layout_marginBottom="10dp"
+
+                android:layout_margin="10dp"
                 android:background="@drawable/btn_background2"
                 android:elevation="4dp"
                 android:text="Next"

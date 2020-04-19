@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background2"
     tools:context=".SplashActivity">
      <include layout="@layout/background"/>
      <TextView
@@ -22,10 +23,11 @@
          android:src="@drawable/shadow"
          />
      <ImageView
-         android:layout_width="1700dp"
+         android:layout_width="170dp"
          android:layout_height="170dp"
          android:id="@+id/logo"
          android:layout_centerHorizontal="true"
+         android:layout_centerVertical="true"
          android:layout_above="@+id/reference"
          android:src="@drawable/logo2"
          />

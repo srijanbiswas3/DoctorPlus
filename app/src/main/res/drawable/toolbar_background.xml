@@ -4,6 +4,8 @@
         android:bottomRightRadius="10dp"
         />
     <solid android:color="@color/background"/>
+    <gradient android:startColor="@color/background"
+        android:endColor="#304FFE"/>
 
 
 

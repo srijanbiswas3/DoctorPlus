@@ -286,15 +286,37 @@ phone.setOnClickListener(new View.OnClickListener() {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ds2.getRef().removeValue();
-                appointbtn.setBackgroundResource(R.drawable.btn_background);
-                appointbtn.setText("Request Appointment");
-                Toast.makeText(getApplicationContext(), "Appointment request Cancelled", Toast.LENGTH_SHORT).show();
-                appointbtn.setClickable(true);
-                cancel.setVisibility(View.GONE);
-                chtime.setVisibility(View.GONE);
-                time.setText("");
-                phone.setVisibility(View.GONE);
+
+                AlertDialog.Builder dialog=new AlertDialog.Builder(DoctorDetails.this);
+                dialog.setMessage("Do you want to Cancel the Appointment");
+                dialog.setTitle("Cancel??");
+                dialog.setIcon(R.drawable.logo2);
+                dialog.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                ds2.getRef().removeValue();
+                                appointbtn.setBackgroundResource(R.drawable.btn_background);
+                                appointbtn.setText("Request Appointment");
+                                Toast.makeText(getApplicationContext(), "Appointment request Cancelled", Toast.LENGTH_SHORT).show();
+                                appointbtn.setClickable(true);
+                                cancel.setVisibility(View.GONE);
+                                chtime.setVisibility(View.GONE);
+                                time.setText("");
+                                phone.setVisibility(View.GONE);
+                            }
+                        });
+                dialog.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alertDialog=dialog.create();
+                alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.edittext_background);
+                alertDialog.show();
+
+
 
             }
         });

@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -34,6 +37,10 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -111,6 +118,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         welcome = findViewById(R.id.welcome);
         logout = findViewById(R.id.logout);
         linearLayout = findViewById(R.id.botsheet);
@@ -125,7 +133,7 @@ public class HomeActivity extends AppCompatActivity {
         recyclerview = findViewById(R.id.recyclerview);
         logouttext = findViewById(R.id.logouttext);
         datanf = findViewById(R.id.datanf);
-        locbtn = findViewById(R.id.loca);
+        locbtn = findViewById(R.id.locbtn);
         refresh=findViewById(R.id.refresh);
         auth = FirebaseAuth.getInstance();
         doctorsList = new ArrayList<>();
@@ -141,6 +149,7 @@ public class HomeActivity extends AppCompatActivity {
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
+        Animation spin= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.spin);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.menu1);
@@ -156,6 +165,7 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
         );
+
         nav = (NavigationView) findViewById(R.id.nav);
         nav.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -189,8 +199,8 @@ public class HomeActivity extends AppCompatActivity {
                                 startActivity(intent4);
                                 break;
                             case R.id.drugdic:
-                               /* Intent intent6 = new Intent(HomeActivity.this,Recommend.class);
-                                startActivity(intent6);*/
+                                Intent intent6 = new Intent(HomeActivity.this,DrugListActivity.class);
+                                startActivity(intent6);
                                 break;
 
                         }
@@ -331,6 +341,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Query query = FirebaseDatabase.getInstance().getReference().child("Doctors");
                 query.addListenerForSingleValueEvent(valueEventListener);
+                refresh.startAnimation(spin);
                 filter.setText("Showing Result for: ALL");
                 location.setSelection(0);
                 ptype.setSelection(0);
@@ -342,18 +353,40 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                FirebaseAuth.getInstance().signOut();
-                Toast.makeText(getApplicationContext(), " Logged out", Toast.LENGTH_LONG).show();
+                AlertDialog.Builder dialog=new AlertDialog.Builder(HomeActivity.this);
+                dialog.setMessage("Do you want to log out?");
+                dialog.setTitle("Logout?");
+                dialog.setIcon(R.drawable.logo2);
 
-                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                dialog.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                FirebaseAuth.getInstance().signOut();
+                                Toast.makeText(getApplicationContext(), " Logged out", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                            }
+                        });
+                dialog.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alertDialog=dialog.create();
+                alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.edittext_background);
+                alertDialog.show();
+
+
             }
         });
 
         locbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                locbtn.startAnimation(spin);
                 ActivityCompat.requestPermissions(HomeActivity.this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
                 if (ActivityCompat.checkSelfPermission(
