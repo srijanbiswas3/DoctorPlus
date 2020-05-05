@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/botsheet"
+    android:orientation="vertical"
     tools:context=".Recommend2">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -17,67 +18,73 @@
         android:translationZ="3dp"
         app:title="Problem Name"
         app:titleTextColor="@android:color/white" />
+
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please select the problems you might have"
-        android:textColor="@android:color/white"
-        android:background="@drawable/status_color_blue"
+        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:textSize="17dp"
+        android:background="@drawable/status_color_blue"
+        android:gravity="center"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:id="@+id/textView"
-        android:gravity="center"
-        android:layout_below="@+id/toolbar"/>
+        android:text="Please select the problems you might have"
+        android:textColor="@android:color/white"
+        android:textSize="17dp" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/check"
         android:layout_below="@+id/textView"
-        android:layout_above="@+id/tips"
-        android:paddingTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:paddingTop="10dp">
+
         <LinearLayout
+            android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:layout_margin="50dp"
             android:orientation="vertical"
-            android:layout_margin="40dp"
-            android:paddingBottom="-20dp"
-            android:id="@+id/linear"/>
+            android:paddingTop="40dp"
+            android:paddingBottom="20dp" />
     </ScrollView>
+
     <TextView
+        android:id="@+id/check"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/muli_light_italic"
-        android:id="@+id/tips"
         android:layout_above="@+id/next"
+        android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:text="yoyo this is tips"/>
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/muli"
+        android:text="list of problems"
+        android:textColor="#CD2946FF"
+        android:textSize="16sp" />
+
     <Button
         android:id="@+id/next"
         android:layout_width="150dp"
         android:layout_height="35dp"
-        android:background="@drawable/btn_background2"
-        android:elevation="4dp"
-        android:text="Next"
         android:layout_above="@+id/rel"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="40dp"
+        android:background="@drawable/btn_background2"
+        android:elevation="4dp"
+        android:text="View Suggestions"
         android:textAllCaps="false"
         android:textColor="@android:color/white" />
+
     <RelativeLayout
+        android:id="@+id/rel"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:id="@+id/rel"
-        android:layout_alignParentBottom="true"
-        >
+        android:layout_alignParentBottom="true">
 
         <View
             android:layout_width="match_parent"

@@ -17,6 +17,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -46,6 +48,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -65,6 +68,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -104,7 +108,7 @@ public class HomeActivity extends AppCompatActivity {
     NavigationView nav;
     String gen;
     ImageView datanf;
-    View locbtn,refresh;
+    View locbtn, refresh;
     Geocoder geocoder;
     List<Address> addresses;
     private static final int REQUEST_LOCATION = 1;
@@ -113,6 +117,7 @@ public class HomeActivity extends AppCompatActivity {
     int PERMISSION_ID = 44;
     FusedLocationProviderClient mFusedLocationClient;
     TextView latTextView, lonTextView;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +139,9 @@ public class HomeActivity extends AppCompatActivity {
         logouttext = findViewById(R.id.logouttext);
         datanf = findViewById(R.id.datanf);
         locbtn = findViewById(R.id.locbtn);
-        refresh=findViewById(R.id.refresh);
+        refresh = findViewById(R.id.refresh);
+        fab = findViewById(R.id.fab);
+        DrawerLayout navDrawer = findViewById(R.id.draw);
         auth = FirebaseAuth.getInstance();
         doctorsList = new ArrayList<>();
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
@@ -149,7 +156,11 @@ public class HomeActivity extends AppCompatActivity {
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        Animation spin= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.spin);
+        Animation spin = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.spin);
+
+        int rflag = getIntent().getIntExtra("rflag", 0);
+        String specialist = getIntent().getStringExtra("specialist");
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.menu1);
@@ -157,7 +168,7 @@ public class HomeActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        DrawerLayout navDrawer = findViewById(R.id.draw);
+
                         // If the navigation drawer is not open then open it, if its already open then close it.
                         if (!navDrawer.isDrawerOpen(Gravity.LEFT))
                             navDrawer.openDrawer(Gravity.LEFT);
@@ -165,6 +176,24 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
         );
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!navDrawer.isDrawerOpen(Gravity.LEFT)) {
+                    navDrawer.openDrawer(Gravity.LEFT);
+
+                    fab.setRippleColor(getColor(R.color.background2));
+
+
+                }
+                if (navDrawer.isDrawerOpen(Gravity.LEFT)) {
+                    navDrawer.closeDrawer(Gravity.LEFT);
+                    fab.setBackgroundResource(R.drawable.menu1);
+
+                }
+
+            }
+        });
 
         nav = (NavigationView) findViewById(R.id.nav);
         nav.setNavigationItemSelectedListener(
@@ -199,7 +228,7 @@ public class HomeActivity extends AppCompatActivity {
                                 startActivity(intent4);
                                 break;
                             case R.id.drugdic:
-                                Intent intent6 = new Intent(HomeActivity.this,DrugListActivity.class);
+                                Intent intent6 = new Intent(HomeActivity.this, DrugListActivity.class);
                                 startActivity(intent6);
                                 break;
 
@@ -257,6 +286,33 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+        if (rflag == 1) {
+
+            int c = 0, index = 0;
+            for (int i = 0; i < ptype.getCount(); i++) {
+                if (ptype.getItemAtPosition(i).equals(specialist)) {
+                    c = 1;
+                    index = i;
+                    break;
+                }
+
+            }
+            if (c == 0) {
+                //Toast.makeText(getApplicationContext(), "Sorry!No Specialist found ", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Found :" + specialist, Toast.LENGTH_SHORT).show();
+                ptype.setSelection(index);
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                Query query = FirebaseDatabase.getInstance().getReference("Doctors")
+                        .orderByChild("type")
+                        .equalTo(specialist);
+                filter.setText("Showing Result for: " + specialist);
+                query.addListenerForSingleValueEvent(valueEventListener);
+
+
+            }
+            return;
+        }
 
         reff.addValueEventListener(new ValueEventListener() {
             @Override
@@ -346,14 +402,14 @@ public class HomeActivity extends AppCompatActivity {
                 location.setSelection(0);
                 ptype.setSelection(0);
                 Connected();
-                Toast.makeText(getApplicationContext(),"Refreshing..",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Refreshing..", Toast.LENGTH_SHORT).show();
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder dialog=new AlertDialog.Builder(HomeActivity.this);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(HomeActivity.this);
                 dialog.setMessage("Do you want to log out?");
                 dialog.setTitle("Logout?");
                 dialog.setIcon(R.drawable.logo2);
@@ -369,13 +425,13 @@ public class HomeActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         });
-                dialog.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+                dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 });
-                AlertDialog alertDialog=dialog.create();
+                AlertDialog alertDialog = dialog.create();
                 alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.edittext_background);
                 alertDialog.show();
 
@@ -400,22 +456,21 @@ public class HomeActivity extends AppCompatActivity {
         });
         Connected();
     }
+
     private void Connected() {
         boolean connected = false;
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
             //we are connected to a network
             connected = true;
-        }
-        else {
+        } else {
             connected = false;
-            Toast.makeText(getApplicationContext(),"Please connect to Internet",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please connect to Internet", Toast.LENGTH_SHORT).show();
             progressBar.setVisibility(View.GONE);
             dataloadingtxt.setVisibility(View.GONE);
             filter.setText("Please Connect to network!");
-            if(doctorsList.size()==0)
-            {
+            if (doctorsList.size() == 0) {
                 datanf.setVisibility(View.VISIBLE);
             }
 
@@ -511,20 +566,20 @@ public class HomeActivity extends AppCompatActivity {
             //  String fulladdress = address + ", " + area + ", " + city + ", " + country + ", " + postalcode;
             cityname = area;
             Toast.makeText(getApplicationContext(), area, Toast.LENGTH_LONG).show();
-            int c = 0,index=0;
+            int c = 0, index = 0;
 
             for (int i = 0; i < location.getCount(); i++) {
                 if (location.getItemAtPosition(i).equals(area)) {
                     c = 1;
-                    index=i;
+                    index = i;
                     break;
                 }
 
             }
             if (c == 0) {
-                Toast.makeText(getApplicationContext(), "Sorry!No doctors found in: "+area, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Sorry!No doctors found in: " + area, Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(getApplicationContext(), "Location:"+area, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Location:" + area, Toast.LENGTH_SHORT).show();
 
                 location.setSelection(index);
             }

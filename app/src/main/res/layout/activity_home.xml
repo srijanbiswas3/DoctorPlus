@@ -50,6 +50,7 @@
                     android:textColor="@android:color/white"
                     android:textSize="13sp"
                     android:translationZ="2dp" />
+
                 <Button
                     android:id="@+id/logout"
                     android:layout_width="30dp"
@@ -67,110 +68,141 @@
                     android:translationZ="2dp" />
             </RelativeLayout>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:background="@drawable/edittext_background2"
-    android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/welcome"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="-2dp"
-                android:background="@drawable/status_color_blue"
-                android:fontFamily="@font/muli"
-                android:gravity="bottom"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="5dp"
-                android:text="Welcome!"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/edittext_background2">
 
-                android:textColor="@android:color/white"
+                <TextView
+                    android:id="@+id/welcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="-2dp"
+                    android:background="@drawable/status_color_blue"
+                    android:fontFamily="@font/muli"
+                    android:gravity="bottom"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="5dp"
+                    android:text="Welcome!"
 
-                android:textSize="17sp" />
+                    android:textColor="@android:color/white"
 
-            <TextView
-                android:id="@+id/filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/welcome"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/status_color_blue"
-                android:fontFamily="@font/muli"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:gravity="center"
-                android:paddingBottom="5dp"
-                android:text="connecting . . ."
-                android:textColor="@android:color/white"
-                android:textSize="12sp" />
+                    android:textSize="17sp" />
 
-    <View
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/refresh"
-        android:background="@drawable/refresh"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="12dp"/>
-</RelativeLayout>
+                <TextView
+                    android:id="@+id/filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/welcome"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/status_color_blue"
+                    android:fontFamily="@font/muli"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="5dp"
+                    android:text="connecting . . ."
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp" />
+
+                <View
+                    android:id="@+id/refresh"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/refresh" />
+            </RelativeLayout>
 
 
         </com.google.android.material.appbar.AppBarLayout>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior" >
-    <ImageView
-            android:id="@+id/datanf"
-            android:layout_width="150dp"
-            android:layout_height="250dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/doctorimage"
-            android:visibility="gone" />
-
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp" />
-
-        <TextView
-            android:id="@+id/dataloadingtxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/progress"
-            android:layout_centerHorizontal="true"
-
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="Please Be Patient while \n the Data is Loading!"
-            android:textSize="15sp"
-            android:textStyle="italic" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="40dp"
-            android:elevation="-1dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:paddingBottom="5dp"
-          />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</RelativeLayout>
+            <ImageView
+                android:id="@+id/datanf"
+                android:layout_width="150dp"
+                android:layout_height="250dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/doctorimage"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp" />
+
+            <TextView
+                android:id="@+id/dataloadingtxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progress"
+                android:layout_centerHorizontal="true"
+
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Please Be Patient while \n the Data is Loading!"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="40dp"
+                android:elevation="-1dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp" />
+
+           <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="100dp"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:src="@drawable/menu1"
+                android:translationZ="3dp"
+                android:layout_above="@+id/botsheet"
+                app:background="@color/background"
+                app:backgroundTint="@color/background"/>-->
+        </RelativeLayout>
+
         <include layout="@layout/bottom_sheet" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="60dp"
+            android:clickable="true"
+            android:elevation="5dp"
+            app:layout_anchor="@+id/botsheet"
+            app:layout_anchorGravity="top|end"
+            android:src="@drawable/menu1"
+            android:translationZ="10dp"
+            app:background="@color/background"
+            app:backgroundTint="@color/background"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView

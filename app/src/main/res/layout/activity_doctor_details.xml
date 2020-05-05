@@ -257,7 +257,7 @@
                     android:layout_height="3dp"
                     android:layout_marginBottom="-6dp"
                     android:layout_above="@+id/yoe"
-                    android:background="@color/background" />
+                    android:background="@drawable/toolbar_background" />
                 <TextView
                     android:id="@+id/yoe"
                     android:layout_width="wrap_content"

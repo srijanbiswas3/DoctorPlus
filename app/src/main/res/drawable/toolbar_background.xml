@@ -5,7 +5,9 @@
         />
     <solid android:color="@color/background"/>
     <gradient android:startColor="@color/background"
-        android:endColor="#304FFE"/>
+
+        android:centerColor="@color/background"
+        android:endColor="#3F50BB"/>
 
 
 
