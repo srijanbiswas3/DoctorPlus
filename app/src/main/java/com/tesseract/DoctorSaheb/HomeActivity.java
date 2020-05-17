@@ -70,6 +70,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -286,33 +287,7 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-        if (rflag == 1) {
 
-            int c = 0, index = 0;
-            for (int i = 0; i < ptype.getCount(); i++) {
-                if (ptype.getItemAtPosition(i).equals(specialist)) {
-                    c = 1;
-                    index = i;
-                    break;
-                }
-
-            }
-            if (c == 0) {
-                //Toast.makeText(getApplicationContext(), "Sorry!No Specialist found ", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(getApplicationContext(), "Found :" + specialist, Toast.LENGTH_SHORT).show();
-                ptype.setSelection(index);
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                Query query = FirebaseDatabase.getInstance().getReference("Doctors")
-                        .orderByChild("type")
-                        .equalTo(specialist);
-                filter.setText("Showing Result for: " + specialist);
-                query.addListenerForSingleValueEvent(valueEventListener);
-
-
-            }
-            return;
-        }
 
         reff.addValueEventListener(new ValueEventListener() {
             @Override
@@ -330,7 +305,11 @@ public class HomeActivity extends AppCompatActivity {
                                 gen = "Mrs.";
                             }
                             welcome.setText("Welcome " + gen + nam);
-                            Toast.makeText(getApplicationContext(), "Welcome " + nam, Toast.LENGTH_SHORT).show();
+                            if (rflag != 1) {
+                                Toast.makeText(getApplicationContext(), "Welcome " + nam, Toast.LENGTH_SHORT).show();
+
+                            }
+
                             progressBar.setVisibility(View.GONE);
                             dataloadingtxt.setVisibility(View.GONE);
 
@@ -455,6 +434,34 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         Connected();
+        if (rflag == 1) {
+
+            int c = 0, index = 0;
+            for (int i = 0; i < ptype.getCount(); i++) {
+                if (ptype.getItemAtPosition(i).equals(specialist)) {
+                    c = 1;
+                    index = i;
+                    break;
+                }
+
+            }
+            if (c == 0) {
+                //Toast.makeText(getApplicationContext(), "Sorry!No Specialist found ", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Searched :" + specialist, Toast.LENGTH_SHORT).show();
+                ptype.setSelection(index);
+                //todo snakbar
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                Query query = FirebaseDatabase.getInstance().getReference("Doctors")
+                        .orderByChild("type")
+                        .equalTo(specialist);
+                filter.setText("Showing Result for: " + specialist);
+                query.addListenerForSingleValueEvent(valueEventListener);
+
+
+            }
+
+        }
     }
 
     private void Connected() {

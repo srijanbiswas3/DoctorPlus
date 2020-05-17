@@ -11,7 +11,7 @@
     <item android:id="@android:id/background">
         <shape android:shape="rectangle">
             <gradient
-                android:endColor="@android:color/holo_blue_light"
+                android:endColor="#0779e4"
                 android:startColor="@color/colorPrimaryDark"
                 android:type="linear" />
             <corners android:radius="40dp" />
